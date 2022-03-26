@@ -26,6 +26,8 @@ head(raw_decathlon_data)
 dim(raw_decathlon_data)
 
 raw_decathlon_data <- rename(raw_decathlon_data, athlete_name = row_names)
+raw_decathlon_data <- raw_decathlon_data %>% 
+  mutate(athlete_name = tolower(athlete_name))
 
 decathlon_data_long <- raw_decathlon_data %>%
   pivot_longer(cols = 2:11, 
@@ -43,3 +45,4 @@ decathlon_data_long <- rename(decathlon_data_long, ind_event_score = score)
 
 names(decathlon_data_long)
 head(decathlon_data_long)
+class(decathlon_data_long)
