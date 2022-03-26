@@ -1,4 +1,10 @@
 library(readr)
+library(tidyverse)
 library(here)
+library(janitor)
 raw_decathlon_data <- read_rds(here("raw_data/decathlon.rds"))
-  
+head(raw_decathlon_data)
+dim(raw_decathlon_data)
+names(raw_decathlon_data)
+raw_decathlon_data <- raw_decathlon_data %>% 
+  clean_names()
