@@ -106,3 +106,30 @@ decathlon_data_long %>%
 
 The top 3 shot-put scores in Olympic competition came from Sebrle, Karpov and
 Macey with scores of 16.36m, 15.93m and 15.73m respectively. 
+
+# What was the average points for competitors who ran the 400m in less than 50 seconds vs. those than ran 400m in more than 50 seconds?
+
+___Average overall score with a 400m time < 50 seconds___
+
+```{r}
+
+decathlon_data_long %>% 
+  filter(event == "x400m" & ind_event_score < 50.00) %>% 
+  summarise(avg_score = mean(points))
+```
+
+The average score for athletes across both competitions who ran the 400m in 
+less than 50 seconds was 8120.483.
+
+___Average overall score with a 400m time > 50 seconds___
+
+```{r}
+decathlon_data_long %>% 
+  filter(event == "x400m" & ind_event_score > 50.00) %>% 
+  summarise(avg_score = mean(points))
+```
+
+The average score across both competitions when an athlete ran the 400m in 
+greater than 50 seconds was 7727.167. This gives a difference in 393.316 points
+in an athletes average total score depending on whether their 400m was greater
+or less than 50 seconds. 
