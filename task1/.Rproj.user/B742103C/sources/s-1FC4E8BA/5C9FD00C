@@ -1,12 +1,12 @@
 {
-    "id": "A47F014B",
+    "id": "5C9FD00C",
     "path": "~/Documents/CodeClan/dirty_data_codeclan_project_michaelkustra/task1/analysis_and_documentation/decathlon_analysis_doc.Rmd",
     "project_path": "analysis_and_documentation/decathlon_analysis_doc.Rmd",
     "type": "r_markdown",
-    "hash": "2917456860",
+    "hash": "3023129094",
     "contents": "",
     "dirty": false,
-    "created": 1648285807362.0,
+    "created": 1648310197237.0,
     "source_on_save": false,
     "relative_order": 2,
     "properties": {
@@ -14,15 +14,15 @@
         "chunk_output_type": "inline",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "5,25",
-        "scrollLine": "1"
+        "cursorPosition": "134,25",
+        "scrollLine": "130"
     },
     "folds": "",
-    "lastKnownWriteTime": 1648285961,
+    "lastKnownWriteTime": 1648312645,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1648285961526,
+    "last_content_update": 1648312645635,
     "read_only": false,
     "read_only_alternatives": []
 }
