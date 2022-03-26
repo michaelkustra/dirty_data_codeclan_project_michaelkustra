@@ -53,3 +53,56 @@ decathlon_data_long %>%
 The average 100m time set in Olympic competition was 10.92 seconds, rounded to
 2 decimal places. This was 0.26 seconds quicker than the mean time set in the
 decastar competition.
+
+# Who had the highest total points across both competitions?
+
+```{r}
+
+decathlon_data_wide <- decathlon_data_long %>%
+  pivot_wider(names_from = event, 
+              values_from = ind_event_score)
+
+decathlon_data_wide %>% 
+  group_by(athlete_name) %>%                         
+  summarise_at(vars(points),            
+               list(points_total = sum)) %>% 
+  arrange(desc(points_total)) %>% 
+  head(1)
+
+```
+
+The decathlete with the greatest points total across both competitions was 
+Roman Sebrle, with a combined points total of 17110 points! He was only 168
+points ahead of Will Clay who came second across both competitions. For example,
+that equates to roughly 0.65 seconds of a difference in 100m times, fine margins!
+
+# What was the shot-put scores for the top three competitors in each competition?
+
+___Top 3 shot-put scores in Decastar competition___
+
+```{r}
+
+decathlon_data_long %>% 
+  select(athlete_name, competition, event, ind_event_score) %>% 
+  filter(competition == "Decastar" & event == "shot_put") %>% 
+  arrange(desc(ind_event_score)) %>% 
+  head(3)
+
+```
+
+The top three shot-put scores in the Decastar competition were from Yurkov, 
+Sebrle and Karpov with scores of 15.19m, 14.83m and 14.77m respectively.
+
+___Top 3 shot-put scores in Olympic competition___
+
+```{r}
+decathlon_data_long %>% 
+  select(athlete_name, competition, event, ind_event_score) %>% 
+  filter(competition == "OlympicG" & event == "shot_put") %>% 
+  arrange(desc(ind_event_score)) %>% 
+  head(3)
+
+```
+
+The top 3 shot-put scores in Olympic competition came from Sebrle, Karpov and
+Macey with scores of 16.36m, 15.93m and 15.73m respectively. 
