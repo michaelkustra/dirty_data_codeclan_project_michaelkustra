@@ -26,3 +26,30 @@ The longest long jump seen in the data was that of Clay, with a distance of
 7.96m. This was also set in Olympic competition.
 
 # What was the average 100m time in each competition?
+
+___Average 100m time in decastar competition___
+
+```{r}
+
+decathlon_data_long %>% 
+  select(competition, event, ind_event_score) %>% 
+  filter(event == "x100m" &  competition == "Decastar") %>% 
+  mutate(mean_100m_time = mean(ind_event_score))
+
+```
+
+The average 100m time set in the Decastar competition was 11.18 seconds, rounded
+to 2 decimal places.
+
+___Average 100m time in Olympic competition___
+
+```{r}
+decathlon_data_long %>% 
+  select(competition, event, ind_event_score) %>% 
+  filter(event == "x100m" &  competition == "OlympicG") %>% 
+  mutate(mean_100m_time = mean(ind_event_score))
+```
+
+The average 100m time set in Olympic competition was 10.92 seconds, rounded to
+2 decimal places. This was 0.26 seconds quicker than the mean time set in the
+decastar competition.
