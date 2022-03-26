@@ -4,3 +4,25 @@ output: html_notebook
 ---
 
 # .Rmd for analysing data
+
+```{r}
+head(decathlon_data_long)
+```
+
+# Who had the longest long jump seen in the data?
+
+```{r}
+
+decathlon_data_long %>% 
+  select(athlete_name, event, ind_event_score, competition) %>% 
+  filter(event == "long_jump") %>% 
+  arrange(desc(ind_event_score)) %>% 
+  head(1)
+
+```
+
+___Who had the longest long jump?___
+The longest long jump seen in the data was that of Clay, with a distance of 
+7.96m. This was also set in Olympic competition.
+
+# What was the average 100m time in each competition?
