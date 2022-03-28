@@ -48,7 +48,7 @@ ___Average 100m time in Olympic competition___
 decathlon_data_long %>% 
   select(competition, event, ind_event_score) %>% 
   filter(event == "x100m" &  competition == "OlympicG") %>% 
-  mutate(mean_100m_time = mean(ind_event_score))
+  summarise(mean_100m_time = mean(ind_event_score))
 
 ```
 
