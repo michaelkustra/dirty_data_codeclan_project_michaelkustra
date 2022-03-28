@@ -1,0 +1,35 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(here)
+```
+
+```{r}
+clean_candy_data <- read_csv(here("clean_data/combined_candy_data.csv"))
+```
+
+
+
+```{r}
+
+dim(clean_candy_data)
+
+clean_candy_data %>% 
+  select(q4_country)
+
+
+
+clean_candy_data %>% 
+  summarise(n_nas = sum(is.na(q4_country)))
+
+clean_candy_data %>% 
+  select(q4_country) %>% 
+  distinct()
+
+
+```
+
