@@ -46,3 +46,5 @@ decathlon_data_long <- rename(decathlon_data_long, ind_event_score = score)
 names(decathlon_data_long)
 head(decathlon_data_long)
 class(decathlon_data_long)
+
+saveRDS(decathlon_data_long, file = "clean_data/decathlon_data_long.RDS")

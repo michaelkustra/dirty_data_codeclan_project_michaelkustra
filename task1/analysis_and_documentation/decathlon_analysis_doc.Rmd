@@ -3,10 +3,10 @@ title: "R Notebook"
 output: html_notebook
 ---
 
-# .Rmd for analysing data
+# Read RDS file for analysing data
 
 ```{r}
-head(decathlon_data_long)
+decathlon_data_long <- read_rds("../clean_data/decathlon_data_long.RDS")
 ```
 
 # Who had the longest long jump seen in the data?
@@ -44,10 +44,12 @@ to 2 decimal places.
 ___Average 100m time in Olympic competition___
 
 ```{r}
+
 decathlon_data_long %>% 
   select(competition, event, ind_event_score) %>% 
   filter(event == "x100m" &  competition == "OlympicG") %>% 
   mutate(mean_100m_time = mean(ind_event_score))
+
 ```
 
 The average 100m time set in Olympic competition was 10.92 seconds, rounded to
@@ -96,6 +98,7 @@ Sebrle and Karpov with scores of 15.19m, 14.83m and 14.77m respectively.
 ___Top 3 shot-put scores in Olympic competition___
 
 ```{r}
+
 decathlon_data_long %>% 
   select(athlete_name, competition, event, ind_event_score) %>% 
   filter(competition == "OlympicG" & event == "shot_put") %>% 
@@ -116,6 +119,7 @@ ___Average overall score with a 400m time < 50 seconds___
 decathlon_data_long %>% 
   filter(event == "x400m" & ind_event_score < 50.00) %>% 
   summarise(avg_score = mean(points))
+
 ```
 
 The average score for athletes across both competitions who ran the 400m in 
@@ -124,9 +128,11 @@ less than 50 seconds was 8120.483.
 ___Average overall score with a 400m time > 50 seconds___
 
 ```{r}
+
 decathlon_data_long %>% 
   filter(event == "x400m" & ind_event_score > 50.00) %>% 
   summarise(avg_score = mean(points))
+
 ```
 
 The average score across both competitions when an athlete ran the 400m in 
