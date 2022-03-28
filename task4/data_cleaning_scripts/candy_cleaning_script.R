@@ -1,0 +1,7 @@
+library(readxl)
+candy_2015_data <- read_xlsx("raw_data/boing-boing-candy-2015.xlsx")
+candy_2016_data <- read_xlsx("raw_data/boing-boing-candy-2016.xlsx")
+candy_2017_data <- read_xlsx("raw_data/boing-boing-candy-2017.xlsx")
+dim(candy_2015_data)
+dim(candy_2016_data)
+dim(candy_2017_data)
