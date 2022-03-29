@@ -28,6 +28,9 @@ options(scipen = 999)
 fix_age_and_cols_candy_2015 <- remove_cols_candy_2015 %>% 
   mutate(age = as.numeric(age), age = if_else(
     age > 105, NA_real_, age
+  ),
+  if_else(
+    age < 5, NA_real_, age
   ))
 
 
@@ -54,7 +57,10 @@ remove_cols_candy_2016 <- remove_cols_candy_2016 %>%
 fix_age_and_cols_candy_2016 <- remove_cols_candy_2016 %>% 
   mutate(age = as.numeric(age), age = if_else(
     age > 105, NA_real_, age
-  ))
+  ),
+  if_else(
+    age < 5, NA_real_, age)
+  )
 
 
 #clean 2017 data only
@@ -80,7 +86,10 @@ remove_cols_candy_2017 <- remove_cols_candy_2017 %>%
 fix_age_and_cols_candy_2017 <- remove_cols_candy_2017 %>% 
   mutate(age = as.numeric(age), age = if_else(
     age > 105, NA_real_, age
-  ))
+  ),
+  if_else(
+    age < 5, NA_real_, age)
+  )
 
 
 
