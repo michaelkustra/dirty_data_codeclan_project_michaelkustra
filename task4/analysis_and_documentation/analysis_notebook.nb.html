@@ -217,6 +217,29 @@ pre code {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5gYGAifQ== -->
+<pre class="r"><code>library(tidyverse)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2RzIG92ZXJ3cml0dGVuIGJ5ICdkYnBseXInOlxuICBtZXRob2QgICAgICAgICBmcm9tXG4gIHByaW50LnRibF9sYXp5ICAgICBcbiAgcHJpbnQudGJsX3NxbCAgICAgIFxu4pSA4pSAIEF0dGFjaGluZyBwYWNrYWdlcyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlIDEuMy4xIOKUgOKUgFxu4pyTIGdncGxvdDIgMy4zLjUgICAgIOKckyBwdXJyciAgIDAuMy40XG7inJMgdGliYmxlICAzLjEuNiAgICAg4pyTIGRwbHlyICAgMS4wLjhcbuKckyB0aWR5ciAgIDEuMi4wICAgICDinJMgc3RyaW5nciAxLjQuMFxu4pyTIHJlYWRyICAgMi4xLjIgICAgIOKckyBmb3JjYXRzIDAuNS4xXG7ilIDilIAgQ29uZmxpY3RzIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgCB0aWR5dmVyc2VfY29uZmxpY3RzKCkg4pSA4pSAXG54IGRwbHlyOjpmaWx0ZXIoKSBtYXNrcyBzdGF0czo6ZmlsdGVyKClcbnggZHBseXI6OmxhZygpICAgIG1hc2tzIHN0YXRzOjpsYWcoKVxuIn0= -->
+<pre><code>Registered S3 methods overwritten by &#39;dbplyr&#39;:
+  method         from
+  print.tbl_lazy     
+  print.tbl_sql      
+── Attaching packages ───────────────────────────────────────────────────────── tidyverse 1.3.1 ──
+✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+✓ tibble  3.1.6     ✓ dplyr   1.0.8
+✓ tidyr   1.2.0     ✓ stringr 1.4.0
+✓ readr   2.1.2     ✓ forcats 0.5.1
+── Conflicts ──────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShoZXJlKVxuYGBgIn0= -->
+<pre class="r"><code>library(here)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiaGVyZSgpIHN0YXJ0cyBhdCAvVXNlcnMvdXNlci9Eb2N1bWVudHMvQ29kZUNsYW4vZGlydHlfZGF0YV9jb2RlY2xhbl9wcm9qZWN0X21pY2hhZWxrdXN0cmEvdGFzazRcbiJ9 -->
+<pre><code>here() starts at /Users/user/Documents/CodeClan/dirty_data_codeclan_project_michaelkustra/task4</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>#read in clean data</p>
@@ -322,9 +345,44 @@ dbl (2): year, age
 <h1>For each of joy, despair and meh, which candy bar revived the most of these ratings?</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG9uZ19jbGVhbl9jYW5keV9kYXRhICU+JSBcbiAgZmlsdGVyKHJhdGluZ3MgPT0gXCJZZXNcIilcbmBgYCJ9 -->
-<pre class="r"><code>long_clean_candy_data %&gt;% 
-  filter(ratings == &quot;Yes&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG9uZ19jbGVhbl9jYW5keV9kYXRhICU+JVxuICBzZWxlY3QoY2FuZHlfYmFyLCByYXRpbmdzKSAlPiUgXG4gIGZpbHRlcihyYXRpbmdzID09IFwiSk9ZXCIpICU+JSBcbiAgZ3JvdXBfYnkoY2FuZHlfYmFyKSAlPiUgXG4gIHN1bW1hcmlzZShyYXRpbmdzX2NvdW50ID0gbigpKSAlPiUgXG4gIGFycmFuZ2UoZGVzYyhyYXRpbmdzX2NvdW50KSkgJT4lIFxuICBoZWFkKDEpXG5gYGAifQ== -->
+<pre class="r"><code>long_clean_candy_data %&gt;%
+  select(candy_bar, ratings) %&gt;% 
+  filter(ratings == &quot;JOY&quot;) %&gt;% 
+  group_by(candy_bar) %&gt;% 
+  summarise(ratings_count = n()) %&gt;% 
+  arrange(desc(ratings_count)) %&gt;% 
+  head(1)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5sb25nX2NsZWFuX2NhbmR5X2RhdGEgJT4lXG4gIHNlbGVjdChjYW5keV9iYXIsIHJhdGluZ3MpICU+JSBcbiAgZmlsdGVyKHJhdGluZ3MgPT0gXCJERVNQQUlSXCIpICU+JSBcbiAgZ3JvdXBfYnkoY2FuZHlfYmFyKSAlPiUgXG4gIHN1bW1hcmlzZShyYXRpbmdzX2NvdW50ID0gbigpKSAlPiUgXG4gIGFycmFuZ2UoZGVzYyhyYXRpbmdzX2NvdW50KSkgJT4lIFxuICBoZWFkKDEpXG5cbmBgYCJ9 -->
+<pre class="r"><code>
+long_clean_candy_data %&gt;%
+  select(candy_bar, ratings) %&gt;% 
+  filter(ratings == &quot;DESPAIR&quot;) %&gt;% 
+  group_by(candy_bar) %&gt;% 
+  summarise(ratings_count = n()) %&gt;% 
+  arrange(desc(ratings_count)) %&gt;% 
+  head(1)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5sb25nX2NsZWFuX2NhbmR5X2RhdGEgJT4lXG4gIHNlbGVjdChjYW5keV9iYXIsIHJhdGluZ3MpICU+JSBcbiAgZmlsdGVyKHJhdGluZ3MgPT0gXCJNRUhcIikgJT4lIFxuICBncm91cF9ieShjYW5keV9iYXIpICU+JSBcbiAgc3VtbWFyaXNlKHJhdGluZ3NfY291bnQgPSBuKCkpICU+JSBcbiAgYXJyYW5nZShkZXNjKHJhdGluZ3NfY291bnQpKSAlPiUgXG4gIGhlYWQoMSlcblxuYGBgIn0= -->
+<pre class="r"><code>
+long_clean_candy_data %&gt;%
+  select(candy_bar, ratings) %&gt;% 
+  filter(ratings == &quot;MEH&quot;) %&gt;% 
+  group_by(candy_bar) %&gt;% 
+  summarise(ratings_count = n()) %&gt;% 
+  arrange(desc(ratings_count)) %&gt;% 
+  head(1)
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -342,7 +400,7 @@ dbl (2): year, age
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKYGBge3J9CmxpYnJhcnkodGlkeXZlcnNlKQpsaWJyYXJ5KGhlcmUpCmBgYAoKI3JlYWQgaW4gY2xlYW4gZGF0YSAKYGBge3J9CmxvbmdfY2xlYW5fY2FuZHlfZGF0YSA8LSByZWFkX2NzdihoZXJlKCJjbGVhbl9kYXRhL2xvbmdfY29tYmluZWRfY2xlYW5fZGF0YS5jc3YiKSkKYGBgCgoKI2RpbWVuc2lvbnMgb2YgY2xlYW4gZGF0YSBzZXQKYGBge3J9CgpkaW0obG9uZ19jbGVhbl9jYW5keV9kYXRhKQoKYGBgCgojIFF1ZXN0aW9uIDEKIyBXaGF0IGlzIHRoZSB0b3RhbCBudW1iZXIgb2YgY2FuZHkgcmF0aW5ncyBnaXZlbiBhY3Jvc3MgdGhlIHRocmVlIHllYXJzLiAoTnVtYmVyIG9mIGNhbmR5IHJhdGluZ3MsIG5vdCB0aGUgbnVtYmVyIG9mIHJhdGVycy4gRG9u4oCZdCBjb3VudCBtaXNzaW5nIHZhbHVlcykKCmBgYHtyfQoKbG9uZ19jbGVhbl9jYW5keV9kYXRhICU+JSAKICBzZWxlY3QocmF0aW5ncykgJT4lIAogIHN1bW1hcmlzZSh0b3RhbF9udW1fcmF0aW5ncyA9IHN1bSghaXMubmEocmF0aW5ncykpKQoKYGBgCgpUaGUgdG90YWwgbnVtYmVyIG9mIGNhbmR5IHJhdGluZ3MgYWNyb3NzIHRoZSB0aHJlZSB5ZWFycyAoZXhjbHVkaW5nIGFueSBOQXMpCndhcyA2MTU3ODkhCgojIFF1ZXN0aW9uIDIKIyBXaGF0IHdhcyB0aGUgYXZlcmFnZSBhZ2Ugb2YgcGVvcGxlIHdobyBhcmUgZ29pbmcgb3V0IHRyaWNrIG9yIHRyZWF0aW5nPwoKCmBgYHtyfQoKbG9uZ19jbGVhbl9jYW5keV9kYXRhICU+JSAKICBzZWxlY3QoZ29pbmdfb3V0KSAlPiUgCiAgZGlzdGluY3QoKQpgYGAKCmBgYHtyfQoKbG9uZ19jbGVhbl9jYW5keV9kYXRhICU+JSAKICBmaWx0ZXIoZ29pbmdfb3V0ID09ICJZZXMiKSAlPiUKICBzdW1tYXJpc2UoYXZnX2FnZV90cmlja190cmVhdGVyID0gbWVhbihhZ2UsIG5hLnJtID0gVFJVRSkpCgpgYGAKClRoZSBhdmVyYWdlIGFnZSBmb3Igc29tZW9uZSB3aG8gd2VudCBvdXQgdHJpY2sgb3IgdHJlYXRpbmcgaXMgMzUuMDkgeWVhcnMgKDJkcCkuCgojIFF1ZXN0aW9uIDMKIyBXaGF0IHdhcyB0aGUgYXZlcmFnZSBhZ2Ugb2YgcGVvcGxlIHdobyBhcmUgbm90IGdvaW5nIHRyaWNrIG9yIHRyZWF0aW5nPwoKYGBge3J9Cgpsb25nX2NsZWFuX2NhbmR5X2RhdGEgJT4lIAogIGZpbHRlcihnb2luZ19vdXQgPT0gIk5vIikgJT4lIAogIHN1bW1hcmlzZShhdmdfYWdlX25vbl90cmlja190cmVhdGVyID0gbWVhbihhZ2UsIG5hLnJtID0gVFJVRSkpCgoKYGBgCgpUaGUgYXZlcmFnZSBhZ2UgZm9yIHNvbWVvbmUgbm90IGdvaW5nIHRyaWNrIG9yIHRyZWF0aW5nIGlzIDM5LjE1IHllYXJzICgyZHApCgojIFF1ZXN0aW9uIDQKIyBGb3IgZWFjaCBvZiBqb3ksIGRlc3BhaXIgYW5kIG1laCwgd2hpY2ggY2FuZHkgYmFyIHJldml2ZWQgdGhlIG1vc3Qgb2YgdGhlc2UgcmF0aW5ncz8KCmBgYHtyfQpsb25nX2NsZWFuX2NhbmR5X2RhdGEgJT4lIAogIGZpbHRlcihyYXRpbmdzID09ICJZZXMiKQpgYGAKCgpgYGB7cn0KCmxvbmdfY2xlYW5fY2FuZHlfZGF0YSAlPiUKICBzZWxlY3QocmF0aW5ncykgJT4lIAogIGRpc3RpbmN0KCkKICAKCmBgYAoK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKYGBge3J9CmxpYnJhcnkodGlkeXZlcnNlKQpsaWJyYXJ5KGhlcmUpCmBgYAoKI3JlYWQgaW4gY2xlYW4gZGF0YSAKYGBge3J9CmxvbmdfY2xlYW5fY2FuZHlfZGF0YSA8LSByZWFkX2NzdihoZXJlKCJjbGVhbl9kYXRhL2xvbmdfY29tYmluZWRfY2xlYW5fZGF0YS5jc3YiKSkKYGBgCgoKI2RpbWVuc2lvbnMgb2YgY2xlYW4gZGF0YSBzZXQKYGBge3J9CgpkaW0obG9uZ19jbGVhbl9jYW5keV9kYXRhKQoKYGBgCgojIFF1ZXN0aW9uIDEKIyBXaGF0IGlzIHRoZSB0b3RhbCBudW1iZXIgb2YgY2FuZHkgcmF0aW5ncyBnaXZlbiBhY3Jvc3MgdGhlIHRocmVlIHllYXJzLiAoTnVtYmVyIG9mIGNhbmR5IHJhdGluZ3MsIG5vdCB0aGUgbnVtYmVyIG9mIHJhdGVycy4gRG9u4oCZdCBjb3VudCBtaXNzaW5nIHZhbHVlcykKCmBgYHtyfQoKbG9uZ19jbGVhbl9jYW5keV9kYXRhICU+JSAKICBzZWxlY3QocmF0aW5ncykgJT4lIAogIHN1bW1hcmlzZSh0b3RhbF9udW1fcmF0aW5ncyA9IHN1bSghaXMubmEocmF0aW5ncykpKQoKYGBgCgpUaGUgdG90YWwgbnVtYmVyIG9mIGNhbmR5IHJhdGluZ3MgYWNyb3NzIHRoZSB0aHJlZSB5ZWFycyAoZXhjbHVkaW5nIGFueSBOQXMpCndhcyA2MTU3ODkhCgojIFF1ZXN0aW9uIDIKIyBXaGF0IHdhcyB0aGUgYXZlcmFnZSBhZ2Ugb2YgcGVvcGxlIHdobyBhcmUgZ29pbmcgb3V0IHRyaWNrIG9yIHRyZWF0aW5nPwoKCmBgYHtyfQoKbG9uZ19jbGVhbl9jYW5keV9kYXRhICU+JSAKICBzZWxlY3QoZ29pbmdfb3V0KSAlPiUgCiAgZGlzdGluY3QoKQpgYGAKCmBgYHtyfQoKbG9uZ19jbGVhbl9jYW5keV9kYXRhICU+JSAKICBmaWx0ZXIoZ29pbmdfb3V0ID09ICJZZXMiKSAlPiUKICBzdW1tYXJpc2UoYXZnX2FnZV90cmlja190cmVhdGVyID0gbWVhbihhZ2UsIG5hLnJtID0gVFJVRSkpCgpgYGAKClRoZSBhdmVyYWdlIGFnZSBmb3Igc29tZW9uZSB3aG8gd2VudCBvdXQgdHJpY2sgb3IgdHJlYXRpbmcgaXMgMzUuMDkgeWVhcnMgKDJkcCkuCgojIFF1ZXN0aW9uIDMKIyBXaGF0IHdhcyB0aGUgYXZlcmFnZSBhZ2Ugb2YgcGVvcGxlIHdobyBhcmUgbm90IGdvaW5nIHRyaWNrIG9yIHRyZWF0aW5nPwoKYGBge3J9Cgpsb25nX2NsZWFuX2NhbmR5X2RhdGEgJT4lIAogIGZpbHRlcihnb2luZ19vdXQgPT0gIk5vIikgJT4lIAogIHN1bW1hcmlzZShhdmdfYWdlX25vbl90cmlja190cmVhdGVyID0gbWVhbihhZ2UsIG5hLnJtID0gVFJVRSkpCgoKYGBgCgpUaGUgYXZlcmFnZSBhZ2UgZm9yIHNvbWVvbmUgbm90IGdvaW5nIHRyaWNrIG9yIHRyZWF0aW5nIGlzIDM5LjE1IHllYXJzICgyZHApCgojIFF1ZXN0aW9uIDQKIyBGb3IgZWFjaCBvZiBqb3ksIGRlc3BhaXIgYW5kIG1laCwgd2hpY2ggY2FuZHkgYmFyIHJldml2ZWQgdGhlIG1vc3Qgb2YgdGhlc2UgcmF0aW5ncz8KCmBgYHtyfQpsb25nX2NsZWFuX2NhbmR5X2RhdGEgJT4lCiAgc2VsZWN0KGNhbmR5X2JhciwgcmF0aW5ncykgJT4lIAogIGZpbHRlcihyYXRpbmdzID09ICJKT1kiKSAlPiUgCiAgZ3JvdXBfYnkoY2FuZHlfYmFyKSAlPiUgCiAgc3VtbWFyaXNlKHJhdGluZ3NfY291bnQgPSBuKCkpICU+JSAKICBhcnJhbmdlKGRlc2MocmF0aW5nc19jb3VudCkpICU+JSAKICBoZWFkKDEpCmBgYAoKYGBge3J9Cgpsb25nX2NsZWFuX2NhbmR5X2RhdGEgJT4lCiAgc2VsZWN0KGNhbmR5X2JhciwgcmF0aW5ncykgJT4lIAogIGZpbHRlcihyYXRpbmdzID09ICJERVNQQUlSIikgJT4lIAogIGdyb3VwX2J5KGNhbmR5X2JhcikgJT4lIAogIHN1bW1hcmlzZShyYXRpbmdzX2NvdW50ID0gbigpKSAlPiUgCiAgYXJyYW5nZShkZXNjKHJhdGluZ3NfY291bnQpKSAlPiUgCiAgaGVhZCgxKQoKYGBgCgpgYGB7cn0KCmxvbmdfY2xlYW5fY2FuZHlfZGF0YSAlPiUKICBzZWxlY3QoY2FuZHlfYmFyLCByYXRpbmdzKSAlPiUgCiAgZmlsdGVyKHJhdGluZ3MgPT0gIk1FSCIpICU+JSAKICBncm91cF9ieShjYW5keV9iYXIpICU+JSAKICBzdW1tYXJpc2UocmF0aW5nc19jb3VudCA9IG4oKSkgJT4lIAogIGFycmFuZ2UoZGVzYyhyYXRpbmdzX2NvdW50KSkgJT4lIAogIGhlYWQoMSkKCmBgYAoKYGBge3J9Cgpsb25nX2NsZWFuX2NhbmR5X2RhdGEgJT4lCiAgc2VsZWN0KHJhdGluZ3MpICU+JSAKICBkaXN0aW5jdCgpCiAgCgpgYGAKCg==</div>
 
 
 
