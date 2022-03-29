@@ -105,7 +105,12 @@ combined_clean_candy_data <- bind_rows(fix_age_and_cols_candy_2015,
                                        fix_age_and_cols_candy_2016,
                                        fix_age_and_cols_candy_2017)
 
-
+long_combined_clean_data <- combined_clean_candy_data %>% 
+  pivot_longer(cols = -c(year, age, country, 
+                         are_you_going_actually_going_trick_or_treating_yourself,
+                         gender,
+                         ), names_to = "candy_bar",
+               values_to = "ratings")
 
 
 
