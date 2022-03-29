@@ -83,6 +83,9 @@ long_clean_candy_data %>%
   head(1)
 ```
 
+It was any full sized candy bar that garnered the most 'joy' ratings across
+the combined data set with, 7589 ratings.
+
 ```{r}
 
 long_clean_candy_data %>%
@@ -94,6 +97,9 @@ long_clean_candy_data %>%
   head(1)
 
 ```
+
+It was gum from baseball cards that gathered the greatest number of 'despair'
+ratings across the combined data set with 7341 ratings. 
 
 ```{r}
 
@@ -107,12 +113,27 @@ long_clean_candy_data %>%
 
 ```
 
+It was lollipops that gathered the greatest number of 'meh' ratings across the
+entire combined data set with 1570 ratings.
+
+
+# Question 5
+# How many people rated Starburst as despair?
+
 ```{r}
 
-long_clean_candy_data %>%
-  select(ratings) %>% 
-  distinct()
-  
+long_clean_candy_data %>% 
+  filter(candy_bar == "starburst" & ratings == "DESPAIR") %>% 
+  summarise(starburst_despair_ratings = n())
 
+```
+
+It appears that 1990 people across all three years rated starburst as 'despair'.
+
+```{r}
+long_clean_candy_data %>% 
+  select(candy_bar) %>% 
+  distinct() %>% 
+  arrange(desc(candy_bar))
 ```
 
