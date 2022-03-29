@@ -217,39 +217,51 @@ pre code {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2xlYW5fY2FuZHlfZGF0YSA8LSByZWFkX2NzdihoZXJlKFwiY2xlYW5fZGF0YS9jb21iaW5lZF9jYW5keV9kYXRhLmNzdlwiKSlcbmBgYCJ9 -->
-<pre class="r"><code>clean_candy_data &lt;- read_csv(here(&quot;clean_data/combined_candy_data.csv&quot;))</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KGhlcmUpXG5gYGAifQ== -->
+<pre class="r"><code>library(tidyverse)
+library(here)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<p>#read in clean data</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5kaW0oY2xlYW5fY2FuZHlfZGF0YSlcblxuY2xlYW5fY2FuZHlfZGF0YSAlPiUgXG4gIHNlbGVjdChxNF9jb3VudHJ5KVxuXG5cblxuY2xlYW5fY2FuZHlfZGF0YSAlPiUgXG4gIHN1bW1hcmlzZShuX25hcyA9IHN1bShpcy5uYShxNF9jb3VudHJ5KSkpXG5cbmNsZWFuX2NhbmR5X2RhdGEgJT4lIFxuICBzZWxlY3QocTRfY291bnRyeSkgJT4lIFxuICBkaXN0aW5jdCgpXG5cblxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG9uZ19jbGVhbl9jYW5keV9kYXRhIDwtIHJlYWRfY3N2KGhlcmUoXCJjbGVhbl9kYXRhL2xvbmdfY29tYmluZWRfY2xlYW5fZGF0YS5jc3ZcIikpXG5gYGAifQ== -->
+<pre class="r"><code>long_clean_candy_data &lt;- read_csv(here(&quot;clean_data/long_combined_clean_data.csv&quot;))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>#dimensions of clean data set</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5kaW0obG9uZ19jbGVhbl9jYW5keV9kYXRhKVxuXG5gYGAifQ== -->
 <pre class="r"><code>
-dim(clean_candy_data)
-
-clean_candy_data %&gt;% 
-  select(q4_country)
-
-
-
-clean_candy_data %&gt;% 
-  summarise(n_nas = sum(is.na(q4_country)))
-
-clean_candy_data %&gt;% 
-  select(q4_country) %&gt;% 
-  distinct()
+dim(long_clean_candy_data)
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<div id="question-1" class="section level1">
+<h1>Question 1</h1>
+</div>
+<div id="what-is-the-total-number-of-candy-ratings-given-across-the-three-years.-number-of-candy-ratings-not-the-number-of-raters.-dont-count-missing-values" class="section level1">
+<h1>What is the total number of candy ratings given across the three years. (Number of candy ratings, not the number of raters. Don’t count missing values)</h1>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6MSwibmNvbCI6MSwic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyIxIMOXIDEiXX19LCJyZGYiOiJINHNJQUFBQUFBQUFBMTFQV3dyQ01CRGN4a1pweFFkNGp2WkhFQThnSGtBVS9KTllxeGJycHFRcCt1azl2R3QxRXhxUkJKTE5Eak96TzV2VmZoN3ZZd0RvUVJndzZISDZBdDl0MThrU0lHVFVCQkJDWk9xVFNETUxBSXhzamZEdGtUaUtlMTdUWi9vSERyRzVINVRRQlY1cWp4OHArVWlkeHBpeUZ6MGZPcjV4Vm9yYU40NVBRb3YwckVoUFhldEpCckxTaFVRU01iTTI5OFNCOG9CSmcyYVRVNUpkRzd3bEN6T2dpd3UveVAveDdUVWoyYWV6NHAxVlA4ZExnYm5idlJUSHZPeWFNU1cyZ2ROS0ZhaGRFa0xyVkVzdEhDL09aT2tRbXczYUx5RUIwK2V0QVFBQSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["num_ratings"],"name":[1],"type":["int"],"align":["right"]}],"data":[{"1":"618139"}],"options":{"columns":{"min":{},"max":[10],"total":[1]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The total number of candy ratings across the three years (excluding any NAs) was 618139!</p>
+<!-- rnb-text-end -->
+</div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKYGBge3J9CmxpYnJhcnkodGlkeXZlcnNlKQpsaWJyYXJ5KGhlcmUpCmBgYAoKYGBge3J9CmNsZWFuX2NhbmR5X2RhdGEgPC0gcmVhZF9jc3YoaGVyZSgiY2xlYW5fZGF0YS9jb21iaW5lZF9jYW5keV9kYXRhLmNzdiIpKQpgYGAKCgoKYGBge3J9CgpkaW0oY2xlYW5fY2FuZHlfZGF0YSkKCmNsZWFuX2NhbmR5X2RhdGEgJT4lIAogIHNlbGVjdChxNF9jb3VudHJ5KQoKCgpjbGVhbl9jYW5keV9kYXRhICU+JSAKICBzdW1tYXJpc2Uobl9uYXMgPSBzdW0oaXMubmEocTRfY291bnRyeSkpKQoKY2xlYW5fY2FuZHlfZGF0YSAlPiUgCiAgc2VsZWN0KHE0X2NvdW50cnkpICU+JSAKICBkaXN0aW5jdCgpCgoKYGBgCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKYGBge3J9CmxpYnJhcnkodGlkeXZlcnNlKQpsaWJyYXJ5KGhlcmUpCmBgYAoKI3JlYWQgaW4gY2xlYW4gZGF0YSAKYGBge3J9CmxvbmdfY2xlYW5fY2FuZHlfZGF0YSA8LSByZWFkX2NzdihoZXJlKCJjbGVhbl9kYXRhL2xvbmdfY29tYmluZWRfY2xlYW5fZGF0YS5jc3YiKSkKYGBgCgoKI2RpbWVuc2lvbnMgb2YgY2xlYW4gZGF0YSBzZXQKYGBge3J9CgpkaW0obG9uZ19jbGVhbl9jYW5keV9kYXRhKQoKYGBgCgojIFF1ZXN0aW9uIDEKIyBXaGF0IGlzIHRoZSB0b3RhbCBudW1iZXIgb2YgY2FuZHkgcmF0aW5ncyBnaXZlbiBhY3Jvc3MgdGhlIHRocmVlIHllYXJzLiAoTnVtYmVyIG9mIGNhbmR5IHJhdGluZ3MsIG5vdCB0aGUgbnVtYmVyIG9mIHJhdGVycy4gRG9u4oCZdCBjb3VudCBtaXNzaW5nIHZhbHVlcykKCmBgYHtyfQoKbG9uZ19jbGVhbl9jYW5keV9kYXRhICU+JSAKICBzZWxlY3QocmF0aW5ncykgJT4lIAogIHN1bW1hcmlzZShudW1fcmF0aW5ncyA9IHN1bSghaXMubmEocmF0aW5ncykpKQoKYGBgCgpUaGUgdG90YWwgbnVtYmVyIG9mIGNhbmR5IHJhdGluZ3MgYWNyb3NzIHRoZSB0aHJlZSB5ZWFycyAoZXhjbHVkaW5nIGFueSBOQXMpCndhcyA2MTgxMzkh</div>
 
 
 

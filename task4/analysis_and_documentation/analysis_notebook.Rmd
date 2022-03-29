@@ -8,28 +8,29 @@ library(tidyverse)
 library(here)
 ```
 
+#read in clean data 
 ```{r}
-clean_candy_data <- read_csv(here("clean_data/combined_candy_data.csv"))
+long_clean_candy_data <- read_csv(here("clean_data/long_combined_clean_data.csv"))
 ```
 
 
-
+#dimensions of clean data set
 ```{r}
 
-dim(clean_candy_data)
-
-clean_candy_data %>% 
-  select(q4_country)
-
-
-
-clean_candy_data %>% 
-  summarise(n_nas = sum(is.na(q4_country)))
-
-clean_candy_data %>% 
-  select(q4_country) %>% 
-  distinct()
-
+dim(long_clean_candy_data)
 
 ```
 
+# Question 1
+# What is the total number of candy ratings given across the three years. (Number of candy ratings, not the number of raters. Don’t count missing values)
+
+```{r}
+
+long_clean_candy_data %>% 
+  select(ratings) %>% 
+  summarise(num_ratings = sum(!is.na(ratings)))
+
+```
+
+The total number of candy ratings across the three years (excluding any NAs)
+was 618139!
