@@ -113,6 +113,8 @@ long_combined_clean_data <- combined_clean_candy_data %>%
                values_to = "ratings")
 
 
+long_combined_clean_data %>% 
+  write_csv(here("clean_data/long_combined_clean_data.csv"))
 
 
 
@@ -128,7 +130,5 @@ long_combined_clean_data <- combined_clean_candy_data %>%
 
 
 
-#combined_candy_data %>% 
-#write_csv(here("clean_data/combined_candy_data.csv"))
 
 
