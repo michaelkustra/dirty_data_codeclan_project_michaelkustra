@@ -7,7 +7,7 @@ library(here)
 candy_2015_data <- read_xlsx("raw_data/boing-boing-candy-2015.xlsx")
 library(janitor)
 candy_2015_data <- clean_names(candy_2015_data)
-names(candy_2015_data)
+
 
 #remove unneccesary columns
 
@@ -20,7 +20,7 @@ remove_cols_candy_2015 <- candy_2015_data[-c(1, 18, 23, 26, 27, 28, 30, 34, 35,
 
 remove_cols_candy_2015 <- rename(remove_cols_candy_2015,
                                  age = how_old_are_you,
-                                 )
+                                 going_out = are_you_going_actually_going_trick_or_treating_yourself)
 
 # create year column
 remove_cols_candy_2015 <- remove_cols_candy_2015 %>% 
@@ -51,7 +51,8 @@ remove_cols_candy_2016 <- candy_2016_data[-c(1, 6, 15, 21, 22, 27, 31:32, 38,
 #rename columns
 remove_cols_candy_2016 <- rename(remove_cols_candy_2016, age = how_old_are_you,
                                  gender = your_gender,
-                                 country = which_country_do_you_live_in)
+                                 country = which_country_do_you_live_in,
+                                 going_out = are_you_going_actually_going_trick_or_treating_yourself)
 
 #create year columns
 remove_cols_candy_2016 <- remove_cols_candy_2016 %>% 
@@ -107,14 +108,24 @@ combined_clean_candy_data <- bind_rows(fix_age_and_cols_candy_2015,
 
 long_combined_clean_data <- combined_clean_candy_data %>% 
   pivot_longer(cols = -c(year, age, country, 
-                         are_you_going_actually_going_trick_or_treating_yourself,
+                         going_out,
                          gender,
                          ), names_to = "candy_bar",
                values_to = "ratings")
 
 
+long_combined_clean_data <- long_combined_clean_data %>% 
+  mutate(ratings = case_when(
+    ratings == "Yes" ~ "JOY",
+    ratings == "No" ~ "DESPAIR",
+    TRUE ~ ratings
+  )
+  )
+
+
 long_combined_clean_data %>% 
   write_csv(here("clean_data/long_combined_clean_data.csv"))
+
 
 
 

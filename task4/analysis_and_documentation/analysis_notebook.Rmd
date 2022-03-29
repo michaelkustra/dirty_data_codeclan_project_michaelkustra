@@ -33,7 +33,7 @@ long_clean_candy_data %>%
 ```
 
 The total number of candy ratings across the three years (excluding any NAs)
-was 618139!
+was 615789!
 
 # Question 2
 # What was the average age of people who are going out trick or treating?
@@ -42,16 +42,49 @@ was 618139!
 ```{r}
 
 long_clean_candy_data %>% 
-  select(are_you_going_actually_going_trick_or_treating_yourself) %>% 
+  select(going_out) %>% 
   distinct()
 ```
 
 ```{r}
 
 long_clean_candy_data %>% 
-  filter(are_you_going_actually_going_trick_or_treating_yourself == "Yes") %>%
+  filter(going_out == "Yes") %>%
   summarise(avg_age_trick_treater = mean(age, na.rm = TRUE))
 
 ```
 
-The average age for someone who went out trick or treating is 33.71 years (2dp).
+The average age for someone who went out trick or treating is 35.09 years (2dp).
+
+# Question 3
+# What was the average age of people who are not going trick or treating?
+
+```{r}
+
+long_clean_candy_data %>% 
+  filter(going_out == "No") %>% 
+  summarise(avg_age_non_trick_treater = mean(age, na.rm = TRUE))
+
+
+```
+
+The average age for someone not going trick or treating is 39.15 years (2dp)
+
+# Question 4
+# For each of joy, despair and meh, which candy bar revived the most of these ratings?
+
+```{r}
+long_clean_candy_data %>% 
+  filter(ratings == "Yes")
+```
+
+
+```{r}
+
+long_clean_candy_data %>%
+  select(ratings) %>% 
+  distinct()
+  
+
+```
+
