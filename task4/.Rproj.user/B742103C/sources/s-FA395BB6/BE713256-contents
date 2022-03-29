@@ -19,14 +19,18 @@ remove_cols_candy_2015 <- candy_2015_data[-c(1, 18, 23, 26, 27, 28, 30, 34, 37,
 
 remove_cols_candy_2015 <- rename(remove_cols_candy_2015, age = how_old_are_you)
 
-#change age to numeric column
-options(scipen = 999)
-remove_cols_candy_2015 <- remove_cols_candy_2015 %>% 
-  mutate(age = as.numeric(age))
-
 # create year column
 remove_cols_candy_2015 <- remove_cols_candy_2015 %>% 
   mutate(year = 2015, .before = 1)
+
+#fix age anomalies, place upper limit on age.
+options(scipen = 999)
+fix_age_and_cols_candy_2015 <- remove_cols_candy_2015 %>% 
+  mutate(age = as.numeric(age), age = if_else(
+    age > 105, NA_real_, age
+  ))
+
+
 
 
 #clean 2016 data only
@@ -46,9 +50,11 @@ remove_cols_candy_2016 <- rename(remove_cols_candy_2016, age = how_old_are_you)
 remove_cols_candy_2016 <- remove_cols_candy_2016 %>% 
   mutate(year = 2016, .before = 1)
 
-#change age to numeric column
-remove_cols_candy_2016 <- remove_cols_candy_2016 %>% 
-  mutate(age = as.numeric(age))
+#fix age anomalies and change to numeric
+fix_age_and_cols_candy_2016 <- remove_cols_candy_2016 %>% 
+  mutate(age = as.numeric(age), age = if_else(
+    age > 105, NA_real_, age
+  ))
 
 
 #clean 2017 data only
@@ -70,10 +76,11 @@ remove_cols_candy_2017 <- remove_cols_candy_2017 %>%
 remove_cols_candy_2017 <- remove_cols_candy_2017 %>% 
   mutate(year = 2017, .before = 1)
 
-#change age to numeric column
-remove_cols_candy_2017 <- remove_cols_candy_2017 %>% 
-  mutate(age = as.numeric(age))
-
+#fix age anomalies and change age to numeric column
+fix_age_and_cols_candy_2017 <- remove_cols_candy_2017 %>% 
+  mutate(age = as.numeric(age), age = if_else(
+    age > 105, NA_real_, age
+  ))
 
 
 
