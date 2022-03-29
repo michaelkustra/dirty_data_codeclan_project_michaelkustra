@@ -75,7 +75,6 @@ The average age for someone not going trick or treating is 39.15 years (2dp)
 
 ```{r}
 long_clean_candy_data %>%
-  select(candy_bar, ratings) %>% 
   filter(ratings == "JOY") %>% 
   group_by(candy_bar) %>% 
   summarise(ratings_count = n()) %>% 
@@ -89,7 +88,6 @@ the combined data set with, 7589 ratings.
 ```{r}
 
 long_clean_candy_data %>%
-  select(candy_bar, ratings) %>% 
   filter(ratings == "DESPAIR") %>% 
   group_by(candy_bar) %>% 
   summarise(ratings_count = n()) %>% 
@@ -104,7 +102,6 @@ ratings across the combined data set with 7341 ratings.
 ```{r}
 
 long_clean_candy_data %>%
-  select(candy_bar, ratings) %>% 
   filter(ratings == "MEH") %>% 
   group_by(candy_bar) %>% 
   summarise(ratings_count = n()) %>% 
