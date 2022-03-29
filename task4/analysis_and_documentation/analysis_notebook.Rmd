@@ -28,9 +28,30 @@ dim(long_clean_candy_data)
 
 long_clean_candy_data %>% 
   select(ratings) %>% 
-  summarise(num_ratings = sum(!is.na(ratings)))
+  summarise(total_num_ratings = sum(!is.na(ratings)))
 
 ```
 
 The total number of candy ratings across the three years (excluding any NAs)
 was 618139!
+
+# Question 2
+# What was the average age of people who are going out trick or treating?
+
+
+```{r}
+
+long_clean_candy_data %>% 
+  select(are_you_going_actually_going_trick_or_treating_yourself) %>% 
+  distinct()
+```
+
+```{r}
+
+long_clean_candy_data %>% 
+  filter(are_you_going_actually_going_trick_or_treating_yourself == "Yes") %>%
+  summarise(avg_age_trick_treater = mean(age, na.rm = TRUE))
+
+```
+
+The average age for someone who went out trick or treating is 33.71 years (2dp).

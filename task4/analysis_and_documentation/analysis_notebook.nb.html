@@ -248,20 +248,54 @@ dim(long_clean_candy_data)
 <h1>What is the total number of candy ratings given across the three years. (Number of candy ratings, not the number of raters. Don’t count missing values)</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6MSwibmNvbCI6MSwic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyIxIMOXIDEiXX19LCJyZGYiOiJINHNJQUFBQUFBQUFBMTFQV3dyQ01CRGN4a1pweFFkNGp2WkhFQThnSGtBVS9KTllxeGJycHFRcCt1azl2R3QxRXhxUkJKTE5Eak96TzV2VmZoN3ZZd0RvUVJndzZISDZBdDl0MThrU0lHVFVCQkJDWk9xVFNETUxBSXhzamZEdGtUaUtlMTdUWi9vSERyRzVINVRRQlY1cWp4OHArVWlkeHBpeUZ6MGZPcjV4Vm9yYU40NVBRb3YwckVoUFhldEpCckxTaFVRU01iTTI5OFNCOG9CSmcyYVRVNUpkRzd3bEN6T2dpd3UveVAveDdUVWoyYWV6NHAxVlA4ZExnYm5idlJUSHZPeWFNU1cyZ2ROS0ZhaGRFa0xyVkVzdEhDL09aT2tRbXczYUx5RUIwK2V0QVFBQSJ9 -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6MSwibmNvbCI6MSwic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyIxIMOXIDEiXX19LCJyZGYiOiJINHNJQUFBQUFBQUFBMTFRYlFyQ01Bek42cXBzNEJlZVl3UHhqd2NRRHlBSy9wTTZwdzVyS2wySC92UWUzbFZOeXlyU1FwdmtrZmVTMTlWaU8wdTNLUUIwSUk0WWREaWx3RGZyWlRZSGlCa1ZFY1NRMlBpZ3Bva0RBUG91SnZnS21qaUthMWxUTXZvRHgwWVpJWGZZWEhkYW1BcFBkY0JLdExybm5tbWwyWk9lRDUxUXZwQ2lEdVhUZ3pBaVAycmlVL1VPS0QxMU01VkNJakc3UEEvSWtRNkFZWU4yazBOV25CdThaRk03b0RVTlArUC9uK0N1SGNrK3JSUnZwYm9sbmlvcy9lNVM3RXZaRmdOeTdBem5OMTJoOFU0SXJYUDNXeDRwbFBTSTh3YnZMOEZOWERPekFRQUEifQ== -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["num_ratings"],"name":[1],"type":["int"],"align":["right"]}],"data":[{"1":"618139"}],"options":{"columns":{"min":{},"max":[10],"total":[1]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
+{"columns":[{"label":["total_num_ratings"],"name":[1],"type":["int"],"align":["right"]}],"data":[{"1":"618139"}],"options":{"columns":{"min":{},"max":[10],"total":[1]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
   </script>
 </div>
 <!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>The total number of candy ratings across the three years (excluding any NAs) was 618139!</p>
+</div>
+<div id="question-2" class="section level1">
+<h1>Question 2</h1>
+</div>
+<div id="what-was-the-average-age-of-people-who-are-going-out-trick-or-treating" class="section level1">
+<h1>What was the average age of people who are going out trick or treating?</h1>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5sb25nX2NsZWFuX2NhbmR5X2RhdGEgJT4lIFxuICBzZWxlY3QoYXJlX3lvdV9nb2luZ19hY3R1YWxseV9nb2luZ190cmlja19vcl90cmVhdGluZ195b3Vyc2VsZikgJT4lIFxuICBkaXN0aW5jdCgpXG5gYGAifQ== -->
+<pre class="r"><code>
+long_clean_candy_data %&gt;% 
+  select(are_you_going_actually_going_trick_or_treating_yourself) %&gt;% 
+  distinct()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6MSwibmNvbCI6MSwic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyIxIMOXIDEiXX19LCJyZGYiOiJINHNJQUFBQUFBQUFBMTFQMjRyQ01CQ2R4bWJGZ2hkWS9JeVdSVjk4RkpIOWdFWEJOeGxyN0JackltbThQTzVmN01mNTdtZW9rNUtBSkRDWm1jT2NPWE4rNXF0eHNrb0FvQVZ4eEtERnFRUytYSHluRTRDWVVSTkJEQjJicnpUMDJRQUFQWnVuMDl1c3orLy93U0NYZUJBMUZZTTNjSWpuWW8yRldCdGQ1bnY2QlJxaEEyWkhxMHZtMlYwSzlrZmZrMTRva1ZkWWh4TEpGZzFtTzAxODZoNEJwYTJPcGxTU1NNeWE0QUU1MGdFd09FbDd5VGJOZjA5eW40NitySUp6RCs2OHlNVmJiVFhaMCszaWJ0ZUhrRVVwaFQrK3dvMm9YTk1qeTQzajdLaExhYndWUXV2TUtJTitMc2xWNVpIR0hEeGVweTZlb0x3QkFBQT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["avg_age_trick_treater"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"33.71295"}],"options":{"columns":{"min":{},"max":[10],"total":[1]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG9uZ19jbGVhbl9jYW5keV9kYXRhICU+JSBcbiAgZmlsdGVyKGFyZV95b3VfZ29pbmdfYWN0dWFsbHlfZ29pbmdfdHJpY2tfb3JfdHJlYXRpbmdfeW91cnNlbGYgPT0gXCJZZXNcIikgJT4lXG4gIHN1bW1hcmlzZShhdmdfYWdlX3RyaWNrX3RyZWF0ZXIgPSBtZWFuKGFnZSwgbmEucm0gPSBUUlVFKSlcblxuXG5gYGAifQ== -->
+<pre class="r"><code>long_clean_candy_data %&gt;% 
+  filter(are_you_going_actually_going_trick_or_treating_yourself == &quot;Yes&quot;) %&gt;%
+  summarise(avg_age_trick_treater = mean(age, na.rm = TRUE))
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The average age for someone who went out trick or treating is 33.71 years (2dp).</p>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKYGBge3J9CmxpYnJhcnkodGlkeXZlcnNlKQpsaWJyYXJ5KGhlcmUpCmBgYAoKI3JlYWQgaW4gY2xlYW4gZGF0YSAKYGBge3J9CmxvbmdfY2xlYW5fY2FuZHlfZGF0YSA8LSByZWFkX2NzdihoZXJlKCJjbGVhbl9kYXRhL2xvbmdfY29tYmluZWRfY2xlYW5fZGF0YS5jc3YiKSkKYGBgCgoKI2RpbWVuc2lvbnMgb2YgY2xlYW4gZGF0YSBzZXQKYGBge3J9CgpkaW0obG9uZ19jbGVhbl9jYW5keV9kYXRhKQoKYGBgCgojIFF1ZXN0aW9uIDEKIyBXaGF0IGlzIHRoZSB0b3RhbCBudW1iZXIgb2YgY2FuZHkgcmF0aW5ncyBnaXZlbiBhY3Jvc3MgdGhlIHRocmVlIHllYXJzLiAoTnVtYmVyIG9mIGNhbmR5IHJhdGluZ3MsIG5vdCB0aGUgbnVtYmVyIG9mIHJhdGVycy4gRG9u4oCZdCBjb3VudCBtaXNzaW5nIHZhbHVlcykKCmBgYHtyfQoKbG9uZ19jbGVhbl9jYW5keV9kYXRhICU+JSAKICBzZWxlY3QocmF0aW5ncykgJT4lIAogIHN1bW1hcmlzZShudW1fcmF0aW5ncyA9IHN1bSghaXMubmEocmF0aW5ncykpKQoKYGBgCgpUaGUgdG90YWwgbnVtYmVyIG9mIGNhbmR5IHJhdGluZ3MgYWNyb3NzIHRoZSB0aHJlZSB5ZWFycyAoZXhjbHVkaW5nIGFueSBOQXMpCndhcyA2MTgxMzkh</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKYGBge3J9CmxpYnJhcnkodGlkeXZlcnNlKQpsaWJyYXJ5KGhlcmUpCmBgYAoKI3JlYWQgaW4gY2xlYW4gZGF0YSAKYGBge3J9CmxvbmdfY2xlYW5fY2FuZHlfZGF0YSA8LSByZWFkX2NzdihoZXJlKCJjbGVhbl9kYXRhL2xvbmdfY29tYmluZWRfY2xlYW5fZGF0YS5jc3YiKSkKYGBgCgoKI2RpbWVuc2lvbnMgb2YgY2xlYW4gZGF0YSBzZXQKYGBge3J9CgpkaW0obG9uZ19jbGVhbl9jYW5keV9kYXRhKQoKYGBgCgojIFF1ZXN0aW9uIDEKIyBXaGF0IGlzIHRoZSB0b3RhbCBudW1iZXIgb2YgY2FuZHkgcmF0aW5ncyBnaXZlbiBhY3Jvc3MgdGhlIHRocmVlIHllYXJzLiAoTnVtYmVyIG9mIGNhbmR5IHJhdGluZ3MsIG5vdCB0aGUgbnVtYmVyIG9mIHJhdGVycy4gRG9u4oCZdCBjb3VudCBtaXNzaW5nIHZhbHVlcykKCmBgYHtyfQoKbG9uZ19jbGVhbl9jYW5keV9kYXRhICU+JSAKICBzZWxlY3QocmF0aW5ncykgJT4lIAogIHN1bW1hcmlzZSh0b3RhbF9udW1fcmF0aW5ncyA9IHN1bSghaXMubmEocmF0aW5ncykpKQoKYGBgCgpUaGUgdG90YWwgbnVtYmVyIG9mIGNhbmR5IHJhdGluZ3MgYWNyb3NzIHRoZSB0aHJlZSB5ZWFycyAoZXhjbHVkaW5nIGFueSBOQXMpCndhcyA2MTgxMzkhCgojIFF1ZXN0aW9uIDIKIyBXaGF0IHdhcyB0aGUgYXZlcmFnZSBhZ2Ugb2YgcGVvcGxlIHdobyBhcmUgZ29pbmcgb3V0IHRyaWNrIG9yIHRyZWF0aW5nPwoKCmBgYHtyfQoKbG9uZ19jbGVhbl9jYW5keV9kYXRhICU+JSAKICBzZWxlY3QoYXJlX3lvdV9nb2luZ19hY3R1YWxseV9nb2luZ190cmlja19vcl90cmVhdGluZ195b3Vyc2VsZikgJT4lIAogIGRpc3RpbmN0KCkKYGBgCgpgYGB7cn0KCmxvbmdfY2xlYW5fY2FuZHlfZGF0YSAlPiUgCiAgZmlsdGVyKGFyZV95b3VfZ29pbmdfYWN0dWFsbHlfZ29pbmdfdHJpY2tfb3JfdHJlYXRpbmdfeW91cnNlbGYgPT0gIlllcyIpICU+JQogIHN1bW1hcmlzZShhdmdfYWdlX3RyaWNrX3RyZWF0ZXIgPSBtZWFuKGFnZSwgbmEucm0gPSBUUlVFKSkKCmBgYAoKVGhlIGF2ZXJhZ2UgYWdlIGZvciBzb21lb25lIHdobyB3ZW50IG91dCB0cmljayBvciB0cmVhdGluZyBpcyAzMy43MSB5ZWFycyAoMmRwKS4K</div>
 
 
 
