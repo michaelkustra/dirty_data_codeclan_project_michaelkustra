@@ -19,6 +19,11 @@ remove_cols_candy_2015 <- candy_2015_data[-c(1, 18, 23, 26, 27, 28, 30, 34, 37,
 
 remove_cols_candy_2015 <- rename(remove_cols_candy_2015, age = how_old_are_you)
 
+#change age to numeric column
+options(scipen = 999)
+remove_cols_candy_2015 <- remove_cols_candy_2015 %>% 
+  mutate(age = as.numeric(age))
+
 # create year column
 remove_cols_candy_2015 <- remove_cols_candy_2015 %>% 
   mutate(year = 2015, .before = 1)
@@ -41,6 +46,10 @@ remove_cols_candy_2016 <- rename(remove_cols_candy_2016, age = how_old_are_you)
 remove_cols_candy_2016 <- remove_cols_candy_2016 %>% 
   mutate(year = 2016, .before = 1)
 
+#change age to numeric column
+remove_cols_candy_2016 <- remove_cols_candy_2016 %>% 
+  mutate(age = as.numeric(age))
+
 
 #clean 2017 data only
 candy_2017_data <- read_xlsx("raw_data/boing-boing-candy-2017.xlsx")
@@ -57,9 +66,13 @@ remove_cols_candy_2017 <- candy_2017_data[-c(1, 6, 15, 21:22, 27, 31:32, 38,
 remove_cols_candy_2017 <- remove_cols_candy_2017 %>% 
   rename_with(str_remove, pattern = "q[0-9]+_")
 
-#rename columns
+#add year column
+remove_cols_candy_2017 <- remove_cols_candy_2017 %>% 
+  mutate(year = 2017, .before = 1)
 
-
+#change age to numeric column
+remove_cols_candy_2017 <- remove_cols_candy_2017 %>% 
+  mutate(age = as.numeric(age))
 
 
 
