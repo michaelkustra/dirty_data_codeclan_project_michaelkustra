@@ -11,13 +11,16 @@ names(candy_2015_data)
 
 #remove unneccesary columns
 
-remove_cols_candy_2015 <- candy_2015_data[-c(1, 18, 23, 26, 27, 28, 30, 34, 37,
-                                             41, 59, 88:90, 97:99, 
+remove_cols_candy_2015 <- candy_2015_data[-c(1, 18, 23, 26, 27, 28, 30, 34, 35, 
+                                             37:38, 41, 59, 63, 80:82, 88:90,
+                                             93:95, 97:99, 
                                              100:114, 116:124)]
 
 #rename columns for ease of analysis later
 
-remove_cols_candy_2015 <- rename(remove_cols_candy_2015, age = how_old_are_you)
+remove_cols_candy_2015 <- rename(remove_cols_candy_2015,
+                                 age = how_old_are_you,
+                                 )
 
 # create year column
 remove_cols_candy_2015 <- remove_cols_candy_2015 %>% 
@@ -29,11 +32,9 @@ fix_age_and_cols_candy_2015 <- remove_cols_candy_2015 %>%
   mutate(age = as.numeric(age), age = if_else(
     age > 105, NA_real_, age
   ),
-  if_else(
+  age = if_else(
     age < 5, NA_real_, age
   ))
-
-
 
 
 #clean 2016 data only
@@ -43,11 +44,14 @@ candy_2016_data <- read_xlsx("raw_data/boing-boing-candy-2016.xlsx")
 candy_2016_data <- clean_names(candy_2016_data)
 
 #remove unnecessary columns from data
-remove_cols_candy_2016 <- candy_2016_data[-c(1, 6, 15, 21, 22, 27, 31, 38, 43,
-                                             78:79, 102, 104:105, 107:123)]
+remove_cols_candy_2016 <- candy_2016_data[-c(1, 6, 15, 21, 22, 27, 31:32, 38, 
+                                             41, 43, 78:79, 102, 104:105, 
+                                             107:123)]
 
 #rename columns
-remove_cols_candy_2016 <- rename(remove_cols_candy_2016, age = how_old_are_you)
+remove_cols_candy_2016 <- rename(remove_cols_candy_2016, age = how_old_are_you,
+                                 gender = your_gender,
+                                 country = which_country_do_you_live_in)
 
 #create year columns
 remove_cols_candy_2016 <- remove_cols_candy_2016 %>% 
@@ -58,7 +62,7 @@ fix_age_and_cols_candy_2016 <- remove_cols_candy_2016 %>%
   mutate(age = as.numeric(age), age = if_else(
     age > 105, NA_real_, age
   ),
-  if_else(
+  age = if_else(
     age < 5, NA_real_, age)
   )
 
@@ -87,15 +91,37 @@ fix_age_and_cols_candy_2017 <- remove_cols_candy_2017 %>%
   mutate(age = as.numeric(age), age = if_else(
     age > 105, NA_real_, age
   ),
-  if_else(
+  age = if_else(
     age < 5, NA_real_, age)
   )
 
+#compare column names using janitor package
+compare_df_cols_same(fix_age_and_cols_candy_2015,
+                     fix_age_and_cols_candy_2016,
+                     fix_age_and_cols_candy_2017)
+
+#combine three data sets since cols are the same
+combined_clean_candy_data <- bind_rows(fix_age_and_cols_candy_2015,
+                                       fix_age_and_cols_candy_2016,
+                                       fix_age_and_cols_candy_2017)
 
 
-#combine three data sets
-#combined_candy_data <- bind_rows(candy_2015_data, candy_2016_data, 
-#                                 candy_2017_data)
+
+
+
+
+
+#fix country column of combined data to reacategorise
+#fix_country_combined_candy_data <- combined_clean_candy_data %>% 
+  #  mutate(country = str_to_lower(country)) %>% 
+#  mutate(case_when(
+#    str_replace(country, "(?i)^usa.*")
+#  ))
+
+
+
+
+
 
 #combined_candy_data %>% 
 #write_csv(here("clean_data/combined_candy_data.csv"))
