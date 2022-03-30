@@ -177,6 +177,9 @@ clean_country_data <- long_combined_clean_data %>%
     )
   )
 
+clean_country_data %>% 
+  write_csv(here("clean_data/clean_country_data.csv"))
+
 country_count_extra <- clean_country_data %>% 
   group_by(country) %>% 
   summarise(count = n())
