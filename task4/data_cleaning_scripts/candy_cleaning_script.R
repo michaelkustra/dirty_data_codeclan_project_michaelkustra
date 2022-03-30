@@ -139,15 +139,32 @@ long_combined_clean_data %>%
 long_combined_clean_data %>% 
   write_csv(here("clean_data/long_combined_clean_data.csv"))
 
+# start cleaning country column
+
+country_count <- long_combined_clean_data %>% 
+  group_by(country) %>% 
+  summarise(count = n())
+
+test_vector_2 <- str_c("will", "this", "work", sep = "|")
+length(test_vector_2)
+test_vector_2
 
 
+things_like_usa <- str_c("(?i)^usa.*", "^'merica", "united states", "(?i)^us*",
+                         "(?i)^usa+", "^merica", "murrika", "murica", "^USA.*",
+                         "trumpistan", "pittsburgh", "new york", "california",
+                         "alaska", "north carolina", "new jersey", "usanited.*",
+                         "the usa", "USA of america", "USA of a", sep = "|")
 
-#fix country column of combined data to reacategorise
-#fix_country_combined_candy_data <- combined_clean_candy_data %>% 
-  #  mutate(country = str_to_lower(country)) %>% 
-#  mutate(case_when(
-#    str_replace(country, "(?i)^usa.*")
-#  ))
+clean_country_combined_data <- long_combined_clean_data %>% 
+    mutate(country = str_to_lower(country)) %>% 
+    mutate(country = str_replace(country, things_like_usa, "USA")
+      
+  )
+
+country_count_new <- clean_country_combined_data %>% 
+  group_by(country) %>% 
+  summarise(count = n())
 
 
 
