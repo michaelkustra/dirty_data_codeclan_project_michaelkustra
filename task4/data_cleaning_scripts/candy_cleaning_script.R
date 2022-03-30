@@ -135,9 +135,9 @@ long_combined_clean_data %>%
   select(gender) %>% 
   distinct()
 
-
-long_combined_clean_data %>% 
-  write_csv(here("clean_data/long_combined_clean_data.csv"))
+# don't need this anymore
+#long_combined_clean_data %>% 
+#  write_csv(here("clean_data/long_combined_clean_data.csv"))
 
 # start cleaning country column
 
