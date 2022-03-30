@@ -74,12 +74,14 @@ The average age for someone not going trick or treating is 39.15 years (2dp)
 # For each of joy, despair and meh, which candy bar revived the most of these ratings?
 
 ```{r}
+
 long_clean_candy_data %>%
   filter(ratings == "JOY") %>% 
   group_by(candy_bar) %>% 
   summarise(ratings_count = n()) %>% 
   arrange(desc(ratings_count)) %>% 
   head(1)
+
 ```
 
 It was any full sized candy bar that garnered the most 'joy' ratings across
@@ -132,5 +134,38 @@ long_clean_candy_data %>%
   select(candy_bar) %>% 
   distinct() %>% 
   arrange(desc(candy_bar))
+```
+
+# Question 6
+
+# For the next three questions, count despair as -1, joy as +1, and meh as 0.
+
+```{r}
+
+long_clean_candy_data %>% 
+  select(ratings) %>% 
+  distinct()
+
+numeric_ratings_candy_data <- long_clean_candy_data %>% 
+  mutate(ratings = case_when(
+    ratings == "JOY" ~ 1,
+    ratings == "MEH" ~ 0,
+    ratings == "DESPAIR" ~ -1
+  )
+)
+
+```
+
+
+# What was the most popular candy bar by this rating system for each gender in the dataset ?
+
+```{r}
+
+numeric_ratings_candy_data %>% 
+  filter(!is.na(ratings)) %>% 
+  group_by(gender, candy_bar) %>% 
+  summarise(ratings_per_gender = sum(ratings)) %>% 
+  slice_max(ratings_per_gender, n = 1)
+
 ```
 
