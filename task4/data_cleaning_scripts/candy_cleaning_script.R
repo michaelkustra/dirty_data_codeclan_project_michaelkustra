@@ -145,26 +145,44 @@ country_count <- long_combined_clean_data %>%
   group_by(country) %>% 
   summarise(count = n())
 
-test_vector_2 <- str_c("will", "this", "work", sep = "|")
-length(test_vector_2)
-test_vector_2
 
+library(stringr)
+library(magrittr)
+library(dplyr)
 
-things_like_usa <- str_c("(?i)^usa.*", "^'merica", "united states", "(?i)^us*",
-                         "(?i)^usa+", "^merica", "murrika", "murica", "^USA.*",
-                         "trumpistan", "pittsburgh", "new york", "california",
-                         "alaska", "north carolina", "new jersey", "usanited.*",
-                         "the usa", "USA of america", "USA of a", sep = "|")
+usa_pattern <- c("(?i)^usa.*", "^'merica", "united states", "(?i)^us*",
+                 "(?i)^usa+", "^merica", "murrika", "murica", "^USA.*",
+                 "trumpistan", "Pittsburgh", "New york", "California",
+                 "alaska", "north carolina", "New jersey", "usanited.*",
+                 "the usa", "USA of America", "USA of A", 
+                 "The Yoo Ess of Aaayyyyyy", "america", "America", "the best one - usa")
 
-clean_country_combined_data <- long_combined_clean_data %>% 
-    mutate(country = str_to_lower(country)) %>% 
-    mutate(country = str_replace(country, things_like_usa, "USA")
+uk_pattern <- c("United Kingdom", "United kingdom", "United Kindom", "UK", "uk",
+                "Uk", "England", "england", "endland")
+
+canada_pattern <- c("Canae", "Canada'", "CANADA", "canada", "Can")
+
+usa_regex <- str_c(usa_pattern, collapse = "|")
+uk_regex <- str_c(uk_pattern, collapse = "|")
+canada_regex <- str_c(canada_pattern, collapse = "|")
+
+clean_country_data <- long_combined_clean_data %>% 
+  mutate(
+    country = case_when(
+      str_detect(country, uk_regex) ~ "GB",
+      str_detect(country, usa_regex) ~ "USA",
+      str_detect(country, canada_regex) ~ "Canada",
+      TRUE ~ as.character(country)
       
+    )
   )
 
-country_count_new <- clean_country_combined_data %>% 
+country_count_extra <- clean_country_data %>% 
   group_by(country) %>% 
   summarise(count = n())
+
+
+
 
 
 
