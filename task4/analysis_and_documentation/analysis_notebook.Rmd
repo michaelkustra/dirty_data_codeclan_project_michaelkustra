@@ -10,14 +10,14 @@ library(here)
 
 #read in clean data 
 ```{r}
-long_clean_candy_data <- read_csv(here("clean_data/long_combined_clean_data.csv"))
+clean_country_data <- read_csv(here("clean_data/clean_country_data.csv"))
 ```
 
 
 #dimensions of clean data set
 ```{r}
 
-dim(long_clean_candy_data)
+dim(clean_country_data)
 
 ```
 
@@ -26,7 +26,7 @@ dim(long_clean_candy_data)
 
 ```{r}
 
-long_clean_candy_data %>% 
+clean_country_data %>% 
   select(ratings) %>% 
   summarise(total_num_ratings = sum(!is.na(ratings)))
 
@@ -41,14 +41,14 @@ was 607406!
 
 ```{r}
 
-long_clean_candy_data %>% 
+clean_country_data %>% 
   select(going_out) %>% 
   distinct()
 ```
 
 ```{r}
 
-long_clean_candy_data %>% 
+clean_country_data %>% 
   filter(going_out == "Yes") %>%
   summarise(avg_age_trick_treater = mean(age, na.rm = TRUE))
 
@@ -61,7 +61,7 @@ The average age for someone who went out trick or treating is 35.09 years (2dp).
 
 ```{r}
 
-long_clean_candy_data %>% 
+clean_country_data %>% 
   filter(going_out == "No") %>% 
   summarise(avg_age_non_trick_treater = mean(age, na.rm = TRUE))
 
@@ -75,7 +75,7 @@ The average age for someone not going trick or treating is 39.15 years (2dp)
 
 ```{r}
 
-long_clean_candy_data %>%
+clean_country_data %>%
   filter(ratings == "JOY") %>% 
   group_by(candy_bar) %>% 
   summarise(ratings_count = n()) %>% 
@@ -89,7 +89,7 @@ the combined data set with, 7369 ratings.
 
 ```{r}
 
-long_clean_candy_data %>%
+clean_country_data %>%
   filter(ratings == "DESPAIR") %>% 
   group_by(candy_bar) %>% 
   summarise(ratings_count = n()) %>% 
@@ -103,7 +103,7 @@ ratings across the combined data set with 7341 ratings.
 
 ```{r}
 
-long_clean_candy_data %>%
+clean_country_data %>%
   filter(ratings == "MEH") %>% 
   group_by(candy_bar) %>% 
   summarise(ratings_count = n()) %>% 
@@ -121,7 +121,7 @@ entire combined data set with 1570 ratings.
 
 ```{r}
 
-long_clean_candy_data %>% 
+clean_country_data %>% 
   filter(candy_bar == "starburst" & ratings == "DESPAIR") %>% 
   summarise(starburst_despair_ratings = n())
 
@@ -130,7 +130,7 @@ long_clean_candy_data %>%
 It appears that 1990 people across all three years rated starburst as 'despair'.
 
 ```{r}
-long_clean_candy_data %>% 
+clean_country_data %>% 
   select(candy_bar) %>% 
   distinct() %>% 
   arrange(desc(candy_bar))
@@ -142,11 +142,11 @@ long_clean_candy_data %>%
 
 ```{r}
 
-long_clean_candy_data %>% 
+clean_country_data %>% 
   select(ratings) %>% 
   distinct()
 
-numeric_ratings_candy_data <- long_clean_candy_data %>% 
+numeric_ratings_candy_data <- clean_country_data %>% 
   mutate(ratings = case_when(
     ratings == "JOY" ~ 1,
     ratings == "MEH" ~ 0,
@@ -185,6 +185,12 @@ numeric_ratings_candy_data %>%
 # What was the most popular candy bar by this rating for people in US, Canada, UK, and all other countries?
 
 ```{r}
+
+numeric_ratings_candy_data %>% 
+  filter(!is.na(ratings)) %>% 
+  group_by(country, candy_bar) %>% 
+  summarise(rating_per_country = sum(ratings)) %>% 
+  slice_max(rating_per_country)
 
 ```
 
