@@ -181,3 +181,10 @@ numeric_ratings_candy_data %>%
 
 ```
 
+# Question 8
+# What was the most popular candy bar by this rating for people in US, Canada, UK, and all other countries?
+
+```{r}
+
+```
+

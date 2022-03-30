@@ -172,7 +172,7 @@ clean_country_data <- long_combined_clean_data %>%
       str_detect(country, uk_regex) ~ "GB",
       str_detect(country, usa_regex) ~ "USA",
       str_detect(country, canada_regex) ~ "Canada",
-      TRUE ~ as.character(country)
+      TRUE ~ "other country"
       
     )
   )
