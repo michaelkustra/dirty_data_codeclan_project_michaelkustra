@@ -33,7 +33,7 @@ long_clean_candy_data %>%
 ```
 
 The total number of candy ratings across the three years (excluding any NAs)
-was 615789!
+was 607406!
 
 # Question 2
 # What was the average age of people who are going out trick or treating?
@@ -84,8 +84,8 @@ long_clean_candy_data %>%
 
 ```
 
-It was any full sized candy bar that garnered the most 'joy' ratings across
-the combined data set with, 7589 ratings.
+It was the reeses peanut butter cups that garnered the most 'joy' ratings across
+the combined data set with, 7369 ratings.
 
 ```{r}
 
@@ -156,16 +156,28 @@ numeric_ratings_candy_data <- long_clean_candy_data %>%
 
 ```
 
-
 # What was the most popular candy bar by this rating system for each gender in the dataset ?
+
+```{r}
+
+numeric_ratings_candy_data %>%
+  filter(!is.na(ratings)) %>%
+  group_by(gender, candy_bar) %>%
+  summarise(ratings_per_gender = sum(ratings)) %>% 
+  slice_max(ratings_per_gender, n = 1)
+
+```
+
+# Question 7
+# What was the most popular candy bar in each year?
 
 ```{r}
 
 numeric_ratings_candy_data %>% 
   filter(!is.na(ratings)) %>% 
-  group_by(gender, candy_bar) %>% 
-  summarise(ratings_per_gender = sum(ratings)) %>% 
-  slice_max(ratings_per_gender, n = 1)
+  group_by(year, candy_bar) %>% 
+  summarise(most_pop_by_year = sum(ratings)) %>% 
+  slice_max(most_pop_by_year, n = 1)
 
 ```
 

@@ -11,7 +11,7 @@ candy_2015_data <- clean_names(candy_2015_data)
 
 #remove unneccesary columns
 
-remove_cols_candy_2015 <- candy_2015_data[-c(1, 18, 23, 26, 27, 28, 30, 34, 35, 
+remove_cols_candy_2015 <- candy_2015_data[-c(1, 7, 18, 23, 26, 27, 28, 30, 34, 35, 
                                              37:38, 41, 59, 63, 80:82, 88:90,
                                              93:95, 97:99, 
                                              100:114, 116:124)]
@@ -44,7 +44,7 @@ candy_2016_data <- read_xlsx("raw_data/boing-boing-candy-2016.xlsx")
 candy_2016_data <- clean_names(candy_2016_data)
 
 #remove unnecessary columns from data
-remove_cols_candy_2016 <- candy_2016_data[-c(1, 6, 15, 21, 22, 27, 31:32, 38, 
+remove_cols_candy_2016 <- candy_2016_data[-c(1, 6, 9, 15, 21, 22, 27, 31:32, 38, 
                                              41, 43, 78:79, 102, 104:105, 
                                              107:123)]
 
@@ -75,7 +75,7 @@ candy_2017_data <- read_xlsx("raw_data/boing-boing-candy-2017.xlsx")
 candy_2017_data <- clean_names(candy_2017_data)
 
 #remove unnecessary columns
-remove_cols_candy_2017 <- candy_2017_data[-c(1, 6, 15, 21:22, 27, 31:32, 38,
+remove_cols_candy_2017 <- candy_2017_data[-c(1, 6, 9, 15, 21:22, 27, 31:32, 38,
                                              43, 49, 79, 81, 105, 107:108,
                                              110:120)]
 
