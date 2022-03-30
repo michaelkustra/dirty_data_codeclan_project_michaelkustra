@@ -122,6 +122,19 @@ long_combined_clean_data <- long_combined_clean_data %>%
   )
   )
 
+long_combined_clean_data <- long_combined_clean_data %>% 
+  mutate(gender = case_when(
+    gender == "Other" ~ "gender not represented",
+    gender == "I'd rather not say" ~ "gender not represented",
+    TRUE ~ gender
+  )
+  )
+
+
+long_combined_clean_data %>% 
+  select(gender) %>% 
+  distinct()
+
 
 long_combined_clean_data %>% 
   write_csv(here("clean_data/long_combined_clean_data.csv"))
