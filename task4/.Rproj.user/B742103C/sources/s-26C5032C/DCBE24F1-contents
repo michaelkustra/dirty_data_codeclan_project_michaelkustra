@@ -1,0 +1,216 @@
+---
+title: "Dirty Data Project"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+    df_print: paged
+  pdf_document: default
+---
+
+```{r}
+library(tidyverse)
+library(here)
+```
+
+
+
+
+
+
+
+#
+#read in clean data 
+```{r}
+clean_country_data <- read_csv(here("clean_data/clean_country_data.csv"))
+```
+
+
+#dimensions of clean data set
+
+## no 2
+
+### no 3
+
+# out 
+
+```{r}
+
+dim(clean_country_data)
+
+```
+
+# Question 1
+# What is the total number of candy ratings given across the three years. (Number of candy ratings, not the number of raters. Don’t count missing values)
+
+```{r}
+
+clean_country_data %>% 
+  select(ratings) %>% 
+  summarise(total_num_ratings = sum(!is.na(ratings)))
+
+```
+
+The total number of candy ratings across the three years (excluding any NAs)
+was 607406!
+
+# Question 2
+# What was the average age of people who are going out trick or treating?
+
+
+```{r}
+
+clean_country_data %>% 
+  select(going_out) %>% 
+  distinct()
+```
+
+```{r}
+
+clean_country_data %>% 
+  filter(going_out == "Yes") %>%
+  summarise(avg_age_trick_treater = mean(age, na.rm = TRUE))
+
+```
+
+The average age for someone who went out trick or treating is 35.09 years (2dp).
+
+# Question 3
+# What was the average age of people who are not going trick or treating?
+
+```{r}
+
+clean_country_data %>% 
+  filter(going_out == "No") %>% 
+  summarise(avg_age_non_trick_treater = mean(age, na.rm = TRUE))
+
+
+```
+
+The average age for someone not going trick or treating is 39.15 years (2dp)
+
+# Question 4
+# For each of joy, despair and meh, which candy bar revived the most of these ratings?
+
+```{r}
+
+clean_country_data %>%
+  filter(ratings == "JOY") %>% 
+  group_by(candy_bar) %>% 
+  summarise(ratings_count = n()) %>% 
+  arrange(desc(ratings_count)) %>% 
+  head(1)
+
+```
+
+It was the reeses peanut butter cups that garnered the most 'joy' ratings across
+the combined data set with, 7369 ratings.
+
+```{r}
+
+clean_country_data %>%
+  filter(ratings == "DESPAIR") %>% 
+  group_by(candy_bar) %>% 
+  summarise(ratings_count = n()) %>% 
+  arrange(desc(ratings_count)) %>% 
+  head(1)
+
+```
+
+It was gum from baseball cards that gathered the greatest number of 'despair'
+ratings across the combined data set with 7341 ratings. 
+
+```{r}
+
+clean_country_data %>%
+  filter(ratings == "MEH") %>% 
+  group_by(candy_bar) %>% 
+  summarise(ratings_count = n()) %>% 
+  arrange(desc(ratings_count)) %>% 
+  head(1)
+
+```
+
+It was lollipops that gathered the greatest number of 'meh' ratings across the
+entire combined data set with 1570 ratings.
+
+
+# Question 5
+# How many people rated Starburst as despair?
+
+```{r}
+
+clean_country_data %>% 
+  filter(candy_bar == "starburst" & ratings == "DESPAIR") %>% 
+  summarise(starburst_despair_ratings = n())
+
+```
+
+It appears that 1990 people across all three years rated starburst as 'despair'.
+
+```{r}
+clean_country_data %>% 
+  select(candy_bar) %>% 
+  distinct() %>% 
+  arrange(desc(candy_bar))
+```
+
+# Question 6
+
+# For the next three questions, count despair as -1, joy as +1, and meh as 0.
+
+```{r}
+
+clean_country_data %>% 
+  select(ratings) %>% 
+  distinct()
+
+numeric_ratings_candy_data <- clean_country_data %>% 
+  mutate(ratings = case_when(
+    ratings == "JOY" ~ 1,
+    ratings == "MEH" ~ 0,
+    ratings == "DESPAIR" ~ -1
+  )
+)
+
+```
+
+# What was the most popular candy bar by this rating system for each gender in the dataset ?
+
+```{r}
+
+numeric_ratings_candy_data %>%
+  filter(!is.na(ratings)) %>%
+  group_by(gender, candy_bar) %>%
+  summarise(ratings_per_gender = sum(ratings)) %>% 
+  slice_max(ratings_per_gender, n = 1)
+
+```
+
+# Question 7
+# What was the most popular candy bar in each year?
+
+```{r}
+
+numeric_ratings_candy_data %>% 
+  filter(!is.na(ratings)) %>% 
+  group_by(year, candy_bar) %>% 
+  summarise(most_pop_by_year = sum(ratings)) %>% 
+  slice_max(most_pop_by_year, n = 1)
+
+```
+
+# Question 8
+# What was the most popular candy bar by this rating for people in US, Canada, UK, and all other countries?
+
+```{r}
+
+numeric_ratings_candy_data %>% 
+  filter(!is.na(ratings)) %>% 
+  group_by(country, candy_bar) %>% 
+  summarise(rating_per_country = sum(ratings)) %>% 
+  slice_max(rating_per_country)
+
+```
+
