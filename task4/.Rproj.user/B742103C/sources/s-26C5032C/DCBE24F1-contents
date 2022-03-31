@@ -8,14 +8,95 @@ output:
     df_print: paged
   pdf_document: default
 ---
-# Load relevant libraries
+
+# Task Introduction
+
+For this task I was given three separate Halloween candy data sets from 2015, 
+2016 and 2017. The data included information on (amongst other information): 
+
+* Whether or not people went trick or treating
+* The type of candy bar they received and their rating of each candy type
+  * Ratings were made using "Joy", "Meh" and "Despair"
+* The country the respondent was from
+* The age of respondent
+* The gender of respondent
+
+It must be added that each data set did not include all of the above, there
+was often missing observations. For example; the 2017 data set was missing year,
+while the 2015 data was missing gender.
+
+The goal of this task was to clean and combine the three data sets so that they
+may be analysed to look for greater trends in the date, such as, the most
+popular candy across all three years or the most popular candy per country.
+
+# Assumptions
+
+Some assumptions were made during the cleaning process of this task in order
+to aid the analysis part of the project. Some major assumptions are listed 
+below:
+
+* I assumed that all observations were given in an honest manner
+  * Responses with no meaning would be discarded
+* Several columns not deemed vital to analysis were removed, examples include:
+  * Glow sticks
+  * Degrees of separation from Beyonce Knowles
+  * Vicodin
+* Full size candy bars was too vague and could relate to anything
+* Age should between limited between 5 and 105 (inclusive)
+
+# Cleaning Process
+
+Initial cleaning was done using the janitor package and `clean_names()` to clean
+the column names. After this, I decided on which columns to remove from each year 
+of data. Anything that was not related to candy (and not demographic information 
+such as gender, age or country) was removed. This included columns such as 
+'kale smoothies' and 'degrees of separation from Beyonce'. My interpretation of 
+the task was to analyse ratings of actual candy bars, thus using that guideline 
+I removed anything that did not meet that basic criteria. This also included the 
+column 'any full size candy bar' as I felt it to be too vague and not refer to a
+specific type of candy.
+
+For ease of analysis I inserted a year column in each of the data sets. This
+seemed the easiest approach given that 2017 was missing the year altogether. 
+
+Since I assumed that all responses were made honestly I decided to place a lower
+and upper limit on each of the age columns. This was to eliminate such responses
+as 0.6 years or 380 years. Ages were to land between 5 and 105 inclusive. I also
+took this opportunity to change the age column to a numeric column.
+
+This same basic approach was taken for each individual data set before they
+were ready to join together, however, one extra step for the 2017 data was to
+use `rename_with()` to remove the q_ prefix from each of the column
+names.
+
+Before joining the three data frames together I used the `compare_df_cols_same()`
+function within the janitor package to run a final check that the column names
+were the same across all three years.
+
+Once this was complete I used `bind_rows()` to join all three years together.
+This worked best as each set have a different number of columns. 
+
+My first step with my combined data frame was the pivot it longer on all the
+candy names. This long format would help my analysis between candy bars later.
+
+My last steps involved cleaning the gender and country columns. For the gender
+column I used `case_when()` to change responses give as 'other' and 'I'd rather
+not say' to 'gender not represented'. For country, I created unique patterns, as
+well as some hard-coding, for USA, Great Britain and Canada to capture as many
+responses into these categories. Anything that did not fall into these three
+categories was renamed 'other country'. This is where my assumptions played a
+part in the data cleaning as I had to draw the line at responses that I could
+not decipher their true meaning.
+
+
+# Load Relevant Libraries
 
 ```{r}
 library(tidyverse)
 library(here)
 ```
 
-# Read in clean data
+# Read in Clean Data
 
 ## Use read_csv using here to create relative filepath
 
@@ -23,7 +104,7 @@ library(here)
 clean_country_data <- read_csv(here("clean_data/clean_country_data.csv"))
 ```
 
-# Initial exploration of candy data
+# Initial Exploration of Candy Data
 
 ## Dimensions of data
 
@@ -35,6 +116,12 @@ dim(clean_country_data)
 
 ```{r}
 names(clean_country_data)
+```
+
+## Use glimpse to capture a view of the whole data
+
+```{r}
+glimpse(clean_country_data)
 ```
 
 
@@ -56,14 +143,6 @@ was 607406!
 # Question 2
 
 ## What was the average age of people who are going out trick or treating?
-
-
-```{r}
-
-clean_country_data %>% 
-  select(going_out) %>% 
-  distinct()
-```
 
 ```{r}
 
@@ -94,6 +173,8 @@ The average age for someone not going trick or treating is 39.15 years (2dp)
 
 ## For each of joy, despair and meh, which candy bar revived the most of these ratings?
 
+### Most 'JOY' ratings
+
 ```{r}
 
 clean_country_data %>%
@@ -108,6 +189,8 @@ clean_country_data %>%
 It was the reeses peanut butter cups that garnered the most 'joy' ratings across
 the combined data set with, 7369 ratings.
 
+### Most 'DESPAIR' ratings
+
 ```{r}
 
 clean_country_data %>%
@@ -121,6 +204,8 @@ clean_country_data %>%
 
 It was gum from baseball cards that gathered the greatest number of 'despair'
 ratings across the combined data set with 7341 ratings. 
+
+### Most 'MEH' ratings
 
 ```{r}
 
@@ -158,15 +243,13 @@ clean_country_data %>%
   arrange(desc(candy_bar))
 ```
 
-# Question 6
 
-## For the next three questions, count despair as -1, joy as +1, and meh as 0.
+
+# For the next three questions, count despair as -1, joy as +1, and meh as 0.
+
+## Assign numerical ratings to joy, despair and meh
 
 ```{r}
-
-clean_country_data %>% 
-  select(ratings) %>% 
-  distinct()
 
 numeric_ratings_candy_data <- clean_country_data %>% 
   mutate(ratings = case_when(
@@ -190,6 +273,15 @@ numeric_ratings_candy_data %>%
   slice_max(ratings_per_gender, n = 1)
 
 ```
+The most popular candy bar for Female respondents was reece's peanut butter
+cups, with a rating of 768.
+
+The most popular candy bar for Male respondents was also reece's peanut butter
+cups, with a rating of 1443.
+
+The most popular candy bar for respondents whose gender could not be represented
+was the kit kat, with a rating of 92.
+
 
 # Question 7
 
@@ -204,6 +296,14 @@ numeric_ratings_candy_data %>%
   slice_max(most_pop_by_year, n = 1)
 
 ```
+Reece's peanut butter cups was the most popular candy bar in both 2015 and 2017.
+However, the kit kat won most popular in 2016 with a rating of 920.
+
+While it is a small sample size in terms of year, it could be said the 
+popularity of reece's peanut butter cups is in decline since its rating is at 
+it's greatest in 2015, loses the title in 2016 and wins in 2017 but with a far
+lower rating than it had in previous years.
+
 
 # Question 8
 
@@ -219,3 +319,10 @@ numeric_ratings_candy_data %>%
 
 ```
 
+In Canada the most popular candy bar was the kit kat, with a rating of 231.
+
+In Great Britain it was a three way tie for the most popular candy bar, with 
+lindt truffle, rolos and toblerone all scoring 30.
+
+In the USA the most popular was reece's peanut butter cups, with a rating of
+1983.

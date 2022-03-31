@@ -168,7 +168,7 @@ usa_regex <- str_c(usa_pattern, collapse = "|")
 uk_regex <- str_c(uk_pattern, collapse = "|")
 canada_regex <- str_c(canada_pattern, collapse = "|")
 
-#use case_when to detect and change accoring to regex patterns above
+#use case_when to detect and change according to regex patterns above
 clean_country_data <- long_combined_clean_data %>% 
   mutate(
     country = case_when(

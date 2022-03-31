@@ -3,7 +3,7 @@
     "path": "~/Documents/CodeClan/dirty_data_codeclan_project_michaelkustra/task4/analysis_and_documentation/analysis_notebook.Rmd",
     "project_path": "analysis_and_documentation/analysis_notebook.Rmd",
     "type": "r_markdown",
-    "hash": "2818827942",
+    "hash": "3191950402",
     "contents": "",
     "dirty": false,
     "created": 1648460934028.0,
@@ -14,15 +14,15 @@
         "chunk_output_type": "inline",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "45,0",
-        "scrollLine": "39"
+        "cursorPosition": "207,22",
+        "scrollLine": "203"
     },
     "folds": "",
-    "lastKnownWriteTime": 1648718882,
+    "lastKnownWriteTime": 1648723907,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1648718882751,
+    "last_content_update": 1648723907887,
     "read_only": false,
     "read_only_alternatives": []
 }
