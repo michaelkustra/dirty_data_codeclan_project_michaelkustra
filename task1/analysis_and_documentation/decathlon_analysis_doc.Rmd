@@ -1,7 +1,42 @@
 ---
-title: "R Notebook"
-output: html_notebook
+title: "Dirty Data Project - Task 1"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+    df_print: paged
+  pdf_document: default
 ---
+# Task Introduction
+This data set included the results for two decathlon competitions; one from an
+Olympic Games and the other from a Decastar competition. Included in the data
+was information on the athletes names, their individual event scores and 
+overall finishing position.
+
+# Assumptions
+My biggest assumption made was that all scores were entered in correctly.
+
+# Cleaning Process
+The first process to clean the data was to use `clean_names()` within the
+janitor package to clean all column names. Then I removed the athlete names
+as row names and moved them to their own column, while changing to lower case. 
+This column was renamed from row_names to athlete_names.
+
+Once the athlete names had their own column I used `pivot_longer()` on the
+individual events so that I could analyse between different events later.
+
+Finally, I renamed the columns of rank and score to final_position and
+ind_event_score, respectively.
+
+# Load Relevant Libraries
+
+```{r}
+library(readr)
+library(tidyverse)
+library(here)
+```
+
 
 # Read RDS file for analysing data
 
@@ -9,7 +44,9 @@ output: html_notebook
 decathlon_data_long <- read_rds("../clean_data/decathlon_data_long.RDS")
 ```
 
-# Who had the longest long jump seen in the data?
+# Question 1
+
+## Who had the longest long jump seen in the data?
 
 ```{r}
 
@@ -25,7 +62,9 @@ ___Who had the longest long jump?___
 The longest long jump seen in the data was that of Clay, with a distance of 
 7.96m. This was also set in Olympic competition.
 
-# What was the average 100m time in each competition?
+# Question 2
+
+## What was the average 100m time in each competition?
 
 ___Average 100m time in decastar competition___
 
@@ -56,7 +95,9 @@ The average 100m time set in Olympic competition was 10.92 seconds, rounded to
 2 decimal places. This was 0.26 seconds quicker than the mean time set in the
 decastar competition.
 
-# Who had the highest total points across both competitions?
+# Question 3
+
+## Who had the highest total points across both competitions?
 
 ```{r}
 
@@ -78,7 +119,9 @@ Roman Sebrle, with a combined points total of 17110 points! He was only 168
 points ahead of Will Clay who came second across both competitions. For example,
 that equates to roughly 0.65 seconds of a difference in 100m times, fine margins!
 
-# What was the shot-put scores for the top three competitors in each competition?
+# Question 4
+
+## What was the shot-put scores for the top three competitors in each competition?
 
 ___Top 3 shot-put scores in Decastar competition___
 
@@ -110,7 +153,9 @@ decathlon_data_long %>%
 The top 3 shot-put scores in Olympic competition came from Sebrle, Karpov and
 Macey with scores of 16.36m, 15.93m and 15.73m respectively. 
 
-# What was the average points for competitors who ran the 400m in less than 50 seconds vs. those than ran 400m in more than 50 seconds?
+# Question 5
+
+## What was the average points for competitors who ran the 400m in less than 50 seconds vs. those than ran 400m in more than 50 seconds?
 
 ___Average overall score with a 400m time < 50 seconds___
 
