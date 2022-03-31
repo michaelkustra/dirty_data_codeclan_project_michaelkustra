@@ -2,28 +2,21 @@ library(readr)
 library(tidyverse)
 library(here)
 library(janitor)
-raw_decathlon_data <- read_rds(here("raw_data/decathlon.rds"))
-head(raw_decathlon_data)
-dim(raw_decathlon_data)
-names(raw_decathlon_data)
-has_rownames(raw_decathlon_data)
-names(raw_decathlon_data)
 
+# read in data
+raw_decathlon_data <- read_rds(here("raw_data/decathlon.rds"))
+
+#clean column names
 raw_decathlon_data <- raw_decathlon_data %>% 
   clean_names()
 
-
-raw_decathlon_data <- tibble::rownames_to_column(raw_decathlon_data, "row_names") # Apply rownames_to_column
+# Apply rownames to column
+raw_decathlon_data <- tibble::rownames_to_column(raw_decathlon_data, "row_names") 
 raw_decathlon_data
 
 
 raw_decathlon_data
 
-
-names(raw_decathlon_data)
-glimpse(raw_decathlon_data)
-head(raw_decathlon_data)
-dim(raw_decathlon_data)
 
 raw_decathlon_data <- rename(raw_decathlon_data, athlete_name = row_names)
 raw_decathlon_data <- raw_decathlon_data %>% 
