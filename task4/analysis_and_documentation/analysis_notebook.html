@@ -260,7 +260,7 @@ div.tocify {
 <li>The gender of respondent</li>
 </ul>
 <p>It must be added that each data set did not include all of the above, there was often missing observations. For example; the 2017 data set was missing year, while the 2015 data was missing gender.</p>
-<p>The goal of this task was to clean and combine the three data sets so that they may be analysed to look for greater trends in the date, such as, the most popular candy across all three years or the most popular candy per country.</p>
+<p>The goal of this task was to clean and combine the three data sets so that they may be analysed to look for greater trends in the data, such as, the most popular candy across all three years or the most popular candy per country.</p>
 </div>
 <div id="assumptions" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Assumptions</h1>
@@ -288,7 +288,7 @@ div.tocify {
 <p>This same basic approach was taken for each individual data set before they were ready to join together, however, one extra step for the 2017 data was to use <code>rename_with()</code> to remove the q_ prefix from each of the column names.</p>
 <p>Before joining the three data frames together I used the <code>compare_df_cols_same()</code> function within the janitor package to run a final check that the column names were the same across all three years.</p>
 <p>Once this was complete I used <code>bind_rows()</code> to join all three years together. This worked best as each set have a different number of columns.</p>
-<p>My first step with my combined data frame was the pivot it longer on all the candy names. This long format would help my analysis between candy bars later.</p>
+<p>My first step with my combined data frame was to pivot it longer on all the candy names. This long format would help my analysis between candy bars later.</p>
 <p>My last steps involved cleaning the gender and country columns. For the gender column I used <code>case_when()</code> to change responses give as ‘other’ and ‘I’d rather not say’ to ‘gender not represented’. For country, I created unique patterns, as well as some hard-coding, for USA, Great Britain and Canada to capture as many responses into these categories. Anything that did not fall into these three categories was renamed ‘other country’. This is where my assumptions played a part in the data cleaning as I had to draw the line at responses that I could not decipher their true meaning.</p>
 </div>
 <div id="load-relevant-libraries" class="section level1" number="4">
@@ -456,15 +456,6 @@ div.tocify {
   </script>
 </div>
 <p>It appears that 1990 people across all three years rated starburst as ‘despair’.</p>
-<pre class="r"><code>clean_country_data %&gt;% 
-  select(candy_bar) %&gt;% 
-  distinct() %&gt;% 
-  arrange(desc(candy_bar))</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["candy_bar"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"york_peppermint_patties"},{"1":"x100_grand_bar"},{"1":"whatchamacallit_bars"},{"1":"vials_of_pure_high_fructose_corn_syrup_for_main_lining_into_your_vein"},{"1":"twix"},{"1":"trail_mix"},{"1":"tolberone_something_or_other"},{"1":"tic_tacs"},{"1":"three_musketeers"},{"1":"those_odd_marshmallow_circus_peanut_things"},{"1":"third_party_m_ms"},{"1":"take_5"},{"1":"sweetums_a_friend_to_diabetes"},{"1":"sweetums"},{"1":"sweet_tarts"},{"1":"swedish_fish"},{"1":"starburst"},{"1":"spotted_dick"},{"1":"sourpatch_kids_i_e_abominations_of_nature"},{"1":"snickers"},{"1":"smarties_commonwealth"},{"1":"smarties_american"},{"1":"skittles"},{"1":"senior_mints"},{"1":"sandwich_sized_bags_filled_with_boo_berry_crunch"},{"1":"runts"},{"1":"rolos"},{"1":"ribbon_candy"},{"1":"regular_m_ms"},{"1":"reggie_jackson_bar"},{"1":"reeses_pieces"},{"1":"reese_s_peanut_butter_cups"},{"1":"red_m_ms"},{"1":"pixy_stix"},{"1":"peeps"},{"1":"peanut_m_m_s"},{"1":"nown_laters"},{"1":"nestle_crunch"},{"1":"nerds"},{"1":"necco_wafers"},{"1":"mr_goodbar"},{"1":"mint_m_ms"},{"1":"mint_leaves"},{"1":"mint_kisses"},{"1":"mint_juleps"},{"1":"minibags_of_chips"},{"1":"milky_way"},{"1":"milk_duds"},{"1":"mike_and_ike"},{"1":"maynards"},{"1":"mary_janes"},{"1":"mars"},{"1":"lollipops"},{"1":"lindt_truffle"},{"1":"licorice_yes_black"},{"1":"licorice_not_black"},{"1":"licorice"},{"1":"lemon_heads"},{"1":"lapel_pins"},{"1":"laffy_taffy"},{"1":"kit_kat"},{"1":"kinder_happy_hippo"},{"1":"kale_smoothie"},{"1":"junior_mints"},{"1":"joy_joy_mit_iodine"},{"1":"jolly_ranchers_good_flavor"},{"1":"jolly_rancher_bad_flavor"},{"1":"independent_m_ms"},{"1":"hersheys_kisses"},{"1":"hersheys_dark_chocolate"},{"1":"hershey_s_milk_chocolate"},{"1":"hershey_s_kissables"},{"1":"heath_bar"},{"1":"hard_candy"},{"1":"gummy_bears_straight_up"},{"1":"gum_from_baseball_cards"},{"1":"green_party_m_ms"},{"1":"good_n_plenty"},{"1":"goo_goo_clusters"},{"1":"fuzzy_peaches"},{"1":"dove_bars"},{"1":"dots"},{"1":"dark_chocolate_hershey"},{"1":"creepy_religious_comics_chick_tracts"},{"1":"coffee_crisp"},{"1":"chiclets"},{"1":"chick_o_sticks_we_don_t_know_what_that_is"},{"1":"caramellos"},{"1":"candy_that_is_clearly_just_the_stuff_given_out_for_free_at_restaurants"},{"1":"candy_corn"},{"1":"cadbury_creme_eggs"},{"1":"butterfinger"},{"1":"bubble_gum"},{"1":"brach_products_not_including_candy_corn"},{"1":"boxo_raisins"},{"1":"box_o_raisins"},{"1":"bottle_caps"},{"1":"bonkers_the_candy"},{"1":"bonkers_the_board_game"},{"1":"bonkers"},{"1":"blue_m_ms"},{"1":"black_jacks"},{"1":"anonymous_brown_globs_that_come_in_black_and_orange_wrappers_a_k_a_mary_janes"},{"1":"anonymous_brown_globs_that_come_in_black_and_orange_wrappers"},{"1":"abstained_from_m_ming"},{"1":"100_grand_bar"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
 </div>
 </div>
 <div id="for-the-next-three-questions-count-despair-as--1-joy-as-1-and-meh-as-0." class="section level1" number="12">
