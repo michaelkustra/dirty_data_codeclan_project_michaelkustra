@@ -246,8 +246,53 @@ div.tocify {
 </div>
 
 
-<div id="load-relevant-libraries" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> Load relevant libraries</h1>
+<div id="task-introduction" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Task Introduction</h1>
+<p>For this task I was given three separate Halloween candy data sets from 2015, 2016 and 2017. The data included information on (amongst other information):</p>
+<ul>
+<li>Whether or not people went trick or treating</li>
+<li>The type of candy bar they received and their rating of each candy type
+<ul>
+<li>Ratings were made using “Joy”, “Meh” and “Despair”</li>
+</ul></li>
+<li>The country the respondent was from</li>
+<li>The age of respondent</li>
+<li>The gender of respondent</li>
+</ul>
+<p>It must be added that each data set did not include all of the above, there was often missing observations. For example; the 2017 data set was missing year, while the 2015 data was missing gender.</p>
+<p>The goal of this task was to clean and combine the three data sets so that they may be analysed to look for greater trends in the date, such as, the most popular candy across all three years or the most popular candy per country.</p>
+</div>
+<div id="assumptions" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Assumptions</h1>
+<p>Some assumptions were made during the cleaning process of this task in order to aid the analysis part of the project. Some major assumptions are listed below:</p>
+<ul>
+<li>I assumed that all observations were given in an honest manner
+<ul>
+<li>Responses with no meaning would be discarded</li>
+</ul></li>
+<li>Several columns not deemed vital to analysis were removed, examples include:
+<ul>
+<li>Glow sticks</li>
+<li>Degrees of separation from Beyonce Knowles</li>
+<li>Vicodin</li>
+</ul></li>
+<li>Full size candy bars was too vague and could relate to anything</li>
+<li>Age should between limited between 5 and 105 (inclusive)</li>
+</ul>
+</div>
+<div id="cleaning-process" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Cleaning Process</h1>
+<p>Initial cleaning was done using the janitor package and <code>clean_names()</code> to clean the column names. After this, I decided on which columns to remove from each year of data. Anything that was not related to candy (and not demographic information such as gender, age or country) was removed. This included columns such as ‘kale smoothies’ and ‘degrees of separation from Beyonce’. My interpretation of the task was to analyse ratings of actual candy bars, thus using that guideline I removed anything that did not meet that basic criteria. This also included the column ‘any full size candy bar’ as I felt it to be too vague and not refer to a specific type of candy.</p>
+<p>For ease of analysis I inserted a year column in each of the data sets. This seemed the easiest approach given that 2017 was missing the year altogether.</p>
+<p>Since I assumed that all responses were made honestly I decided to place a lower and upper limit on each of the age columns. This was to eliminate such responses as 0.6 years or 380 years. Ages were to land between 5 and 105 inclusive. I also took this opportunity to change the age column to a numeric column.</p>
+<p>This same basic approach was taken for each individual data set before they were ready to join together, however, one extra step for the 2017 data was to use <code>rename_with()</code> to remove the q_ prefix from each of the column names.</p>
+<p>Before joining the three data frames together I used the <code>compare_df_cols_same()</code> function within the janitor package to run a final check that the column names were the same across all three years.</p>
+<p>Once this was complete I used <code>bind_rows()</code> to join all three years together. This worked best as each set have a different number of columns.</p>
+<p>My first step with my combined data frame was the pivot it longer on all the candy names. This long format would help my analysis between candy bars later.</p>
+<p>My last steps involved cleaning the gender and country columns. For the gender column I used <code>case_when()</code> to change responses give as ‘other’ and ‘I’d rather not say’ to ‘gender not represented’. For country, I created unique patterns, as well as some hard-coding, for USA, Great Britain and Canada to capture as many responses into these categories. Anything that did not fall into these three categories was renamed ‘other country’. This is where my assumptions played a part in the data cleaning as I had to draw the line at responses that I could not decipher their true meaning.</p>
+</div>
+<div id="load-relevant-libraries" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Load Relevant Libraries</h1>
 <pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
 <pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
@@ -260,10 +305,10 @@ div.tocify {
 <pre class="r"><code>library(here)</code></pre>
 <pre><code>## here() starts at /Users/user/Documents/CodeClan/dirty_data_codeclan_project_michaelkustra/task4</code></pre>
 </div>
-<div id="read-in-clean-data" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> Read in clean data</h1>
-<div id="use-read_csv-using-here-to-create-relative-filepath" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Use read_csv using here to create relative filepath</h2>
+<div id="read-in-clean-data" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Read in Clean Data</h1>
+<div id="use-read_csv-using-here-to-create-relative-filepath" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Use read_csv using here to create relative filepath</h2>
 <pre class="r"><code>clean_country_data &lt;- read_csv(here(&quot;clean_data/clean_country_data.csv&quot;))</code></pre>
 <pre><code>## Rows: 990994 Columns: 7
 ## ── Column specification ────────────────────────────────────────────────────────
@@ -275,24 +320,37 @@ div.tocify {
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
 </div>
-<div id="initial-exploration-of-candy-data" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Initial exploration of candy data</h1>
-<div id="dimensions-of-data" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Dimensions of data</h2>
+<div id="initial-exploration-of-candy-data" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Initial Exploration of Candy Data</h1>
+<div id="dimensions-of-data" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Dimensions of data</h2>
 <pre class="r"><code>dim(clean_country_data)</code></pre>
 <pre><code>## [1] 990994      7</code></pre>
 </div>
-<div id="check-column-names" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Check column names</h2>
+<div id="check-column-names" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Check column names</h2>
 <pre class="r"><code>names(clean_country_data)</code></pre>
 <pre><code>## [1] &quot;year&quot;      &quot;age&quot;       &quot;going_out&quot; &quot;gender&quot;    &quot;country&quot;   &quot;candy_bar&quot;
 ## [7] &quot;ratings&quot;</code></pre>
 </div>
+<div id="use-glimpse-to-capture-a-view-of-the-whole-data" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> Use glimpse to capture a view of the whole data</h2>
+<pre class="r"><code>glimpse(clean_country_data)</code></pre>
+<pre><code>## Rows: 990,994
+## Columns: 7
+## $ year      &lt;dbl&gt; 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, …
+## $ age       &lt;dbl&gt; 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, …
+## $ going_out &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, …
+## $ gender    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+## $ country   &lt;chr&gt; &quot;other country&quot;, &quot;other country&quot;, &quot;other country&quot;, &quot;other co…
+## $ candy_bar &lt;chr&gt; &quot;butterfinger&quot;, &quot;x100_grand_bar&quot;, &quot;anonymous_brown_globs_tha…
+## $ ratings   &lt;chr&gt; &quot;JOY&quot;, NA, &quot;DESPAIR&quot;, NA, NA, NA, NA, &quot;DESPAIR&quot;, &quot;DESPAIR&quot;, …</code></pre>
 </div>
-<div id="question-1" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> Question 1</h1>
-<div id="what-is-the-total-number-of-candy-ratings-given-across-the-three-years.-number-of-candy-ratings-not-the-number-of-raters.-dont-count-missing-values" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> What is the total number of candy ratings given across the three years. (Number of candy ratings, not the number of raters. Don’t count missing values)</h2>
+</div>
+<div id="question-1" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Question 1</h1>
+<div id="what-is-the-total-number-of-candy-ratings-given-across-the-three-years.-number-of-candy-ratings-not-the-number-of-raters.-dont-count-missing-values" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> What is the total number of candy ratings given across the three years. (Number of candy ratings, not the number of raters. Don’t count missing values)</h2>
 <pre class="r"><code>clean_country_data %&gt;% 
   select(ratings) %&gt;% 
   summarise(total_num_ratings = sum(!is.na(ratings)))</code></pre>
@@ -304,18 +362,10 @@ div.tocify {
 <p>The total number of candy ratings across the three years (excluding any NAs) was 607406!</p>
 </div>
 </div>
-<div id="question-2" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> Question 2</h1>
-<div id="what-was-the-average-age-of-people-who-are-going-out-trick-or-treating" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> What was the average age of people who are going out trick or treating?</h2>
-<pre class="r"><code>clean_country_data %&gt;% 
-  select(going_out) %&gt;% 
-  distinct()</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["going_out"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"No"},{"1":"Yes"},{"1":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<div id="question-2" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Question 2</h1>
+<div id="what-was-the-average-age-of-people-who-are-going-out-trick-or-treating" class="section level2" number="8.1">
+<h2><span class="header-section-number">8.1</span> What was the average age of people who are going out trick or treating?</h2>
 <pre class="r"><code>clean_country_data %&gt;% 
   filter(going_out == &quot;Yes&quot;) %&gt;%
   summarise(avg_age_trick_treater = mean(age, na.rm = TRUE))</code></pre>
@@ -327,10 +377,10 @@ div.tocify {
 <p>The average age for someone who went out trick or treating is 35.09 years (2dp).</p>
 </div>
 </div>
-<div id="question-3" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> Question 3</h1>
-<div id="what-was-the-average-age-of-people-who-are-not-going-trick-or-treating" class="section level2" number="6.1">
-<h2><span class="header-section-number">6.1</span> What was the average age of people who are not going trick or treating?</h2>
+<div id="question-3" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Question 3</h1>
+<div id="what-was-the-average-age-of-people-who-are-not-going-trick-or-treating" class="section level2" number="9.1">
+<h2><span class="header-section-number">9.1</span> What was the average age of people who are not going trick or treating?</h2>
 <pre class="r"><code>clean_country_data %&gt;% 
   filter(going_out == &quot;No&quot;) %&gt;% 
   summarise(avg_age_non_trick_treater = mean(age, na.rm = TRUE))</code></pre>
@@ -342,10 +392,12 @@ div.tocify {
 <p>The average age for someone not going trick or treating is 39.15 years (2dp)</p>
 </div>
 </div>
-<div id="question-4" class="section level1" number="7">
-<h1><span class="header-section-number">7</span> Question 4</h1>
-<div id="for-each-of-joy-despair-and-meh-which-candy-bar-revived-the-most-of-these-ratings" class="section level2" number="7.1">
-<h2><span class="header-section-number">7.1</span> For each of joy, despair and meh, which candy bar revived the most of these ratings?</h2>
+<div id="question-4" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> Question 4</h1>
+<div id="for-each-of-joy-despair-and-meh-which-candy-bar-revived-the-most-of-these-ratings" class="section level2" number="10.1">
+<h2><span class="header-section-number">10.1</span> For each of joy, despair and meh, which candy bar revived the most of these ratings?</h2>
+<div id="most-joy-ratings" class="section level3" number="10.1.1">
+<h3><span class="header-section-number">10.1.1</span> Most ‘JOY’ ratings</h3>
 <pre class="r"><code>clean_country_data %&gt;%
   filter(ratings == &quot;JOY&quot;) %&gt;% 
   group_by(candy_bar) %&gt;% 
@@ -358,6 +410,9 @@ div.tocify {
   </script>
 </div>
 <p>It was the reeses peanut butter cups that garnered the most ‘joy’ ratings across the combined data set with, 7369 ratings.</p>
+</div>
+<div id="most-despair-ratings" class="section level3" number="10.1.2">
+<h3><span class="header-section-number">10.1.2</span> Most ‘DESPAIR’ ratings</h3>
 <pre class="r"><code>clean_country_data %&gt;%
   filter(ratings == &quot;DESPAIR&quot;) %&gt;% 
   group_by(candy_bar) %&gt;% 
@@ -370,6 +425,9 @@ div.tocify {
   </script>
 </div>
 <p>It was gum from baseball cards that gathered the greatest number of ‘despair’ ratings across the combined data set with 7341 ratings.</p>
+</div>
+<div id="most-meh-ratings" class="section level3" number="10.1.3">
+<h3><span class="header-section-number">10.1.3</span> Most ‘MEH’ ratings</h3>
 <pre class="r"><code>clean_country_data %&gt;%
   filter(ratings == &quot;MEH&quot;) %&gt;% 
   group_by(candy_bar) %&gt;% 
@@ -384,10 +442,11 @@ div.tocify {
 <p>It was lollipops that gathered the greatest number of ‘meh’ ratings across the entire combined data set with 1570 ratings.</p>
 </div>
 </div>
-<div id="question-5" class="section level1" number="8">
-<h1><span class="header-section-number">8</span> Question 5</h1>
-<div id="how-many-people-rated-starburst-as-despair" class="section level2" number="8.1">
-<h2><span class="header-section-number">8.1</span> How many people rated Starburst as despair?</h2>
+</div>
+<div id="question-5" class="section level1" number="11">
+<h1><span class="header-section-number">11</span> Question 5</h1>
+<div id="how-many-people-rated-starburst-as-despair" class="section level2" number="11.1">
+<h2><span class="header-section-number">11.1</span> How many people rated Starburst as despair?</h2>
 <pre class="r"><code>clean_country_data %&gt;% 
   filter(candy_bar == &quot;starburst&quot; &amp; ratings == &quot;DESPAIR&quot;) %&gt;% 
   summarise(starburst_despair_ratings = n())</code></pre>
@@ -408,18 +467,10 @@ div.tocify {
 </div>
 </div>
 </div>
-<div id="question-6" class="section level1" number="9">
-<h1><span class="header-section-number">9</span> Question 6</h1>
-<div id="for-the-next-three-questions-count-despair-as--1-joy-as-1-and-meh-as-0." class="section level2" number="9.1">
-<h2><span class="header-section-number">9.1</span> For the next three questions, count despair as -1, joy as +1, and meh as 0.</h2>
-<pre class="r"><code>clean_country_data %&gt;% 
-  select(ratings) %&gt;% 
-  distinct()</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["ratings"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"JOY"},{"1":"NA"},{"1":"DESPAIR"},{"1":"MEH"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<div id="for-the-next-three-questions-count-despair-as--1-joy-as-1-and-meh-as-0." class="section level1" number="12">
+<h1><span class="header-section-number">12</span> For the next three questions, count despair as -1, joy as +1, and meh as 0.</h1>
+<div id="assign-numerical-ratings-to-joy-despair-and-meh" class="section level2" number="12.1">
+<h2><span class="header-section-number">12.1</span> Assign numerical ratings to joy, despair and meh</h2>
 <pre class="r"><code>numeric_ratings_candy_data &lt;- clean_country_data %&gt;% 
   mutate(ratings = case_when(
     ratings == &quot;JOY&quot; ~ 1,
@@ -429,10 +480,10 @@ div.tocify {
 )</code></pre>
 </div>
 </div>
-<div id="question-6-1" class="section level1" number="10">
-<h1><span class="header-section-number">10</span> Question 6</h1>
-<div id="what-was-the-most-popular-candy-bar-by-this-rating-system-for-each-gender-in-the-dataset" class="section level2" number="10.1">
-<h2><span class="header-section-number">10.1</span> What was the most popular candy bar by this rating system for each gender in the dataset ?</h2>
+<div id="question-6" class="section level1" number="13">
+<h1><span class="header-section-number">13</span> Question 6</h1>
+<div id="what-was-the-most-popular-candy-bar-by-this-rating-system-for-each-gender-in-the-dataset" class="section level2" number="13.1">
+<h2><span class="header-section-number">13.1</span> What was the most popular candy bar by this rating system for each gender in the dataset ?</h2>
 <pre class="r"><code>numeric_ratings_candy_data %&gt;%
   filter(!is.na(ratings)) %&gt;%
   group_by(gender, candy_bar) %&gt;%
@@ -445,12 +496,15 @@ div.tocify {
 {"columns":[{"label":["gender"],"name":[1],"type":["chr"],"align":["left"]},{"label":["candy_bar"],"name":[2],"type":["chr"],"align":["left"]},{"label":["ratings_per_gender"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Female","2":"reese_s_peanut_butter_cups","3":"768"},{"1":"gender not represented","2":"kit_kat","3":"92"},{"1":"Male","2":"reese_s_peanut_butter_cups","3":"1443"},{"1":"NA","2":"reese_s_peanut_butter_cups","3":"4391"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
+<p>The most popular candy bar for Female respondents was reece’s peanut butter cups, with a rating of 768.</p>
+<p>The most popular candy bar for Male respondents was also reece’s peanut butter cups, with a rating of 1443.</p>
+<p>The most popular candy bar for respondents whose gender could not be represented was the kit kat, with a rating of 92.</p>
 </div>
 </div>
-<div id="question-7" class="section level1" number="11">
-<h1><span class="header-section-number">11</span> Question 7</h1>
-<div id="what-was-the-most-popular-candy-bar-in-each-year" class="section level2" number="11.1">
-<h2><span class="header-section-number">11.1</span> What was the most popular candy bar in each year?</h2>
+<div id="question-7" class="section level1" number="14">
+<h1><span class="header-section-number">14</span> Question 7</h1>
+<div id="what-was-the-most-popular-candy-bar-in-each-year" class="section level2" number="14.1">
+<h2><span class="header-section-number">14.1</span> What was the most popular candy bar in each year?</h2>
 <pre class="r"><code>numeric_ratings_candy_data %&gt;% 
   filter(!is.na(ratings)) %&gt;% 
   group_by(year, candy_bar) %&gt;% 
@@ -463,12 +517,14 @@ div.tocify {
 {"columns":[{"label":["year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["candy_bar"],"name":[2],"type":["chr"],"align":["left"]},{"label":["most_pop_by_year"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"2015","2":"reese_s_peanut_butter_cups","3":"4375"},{"1":"2016","2":"kit_kat","3":"920"},{"1":"2017","2":"reese_s_peanut_butter_cups","3":"1403"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
+<p>Reece’s peanut butter cups was the most popular candy bar in both 2015 and 2017. However, the kit kat won most popular in 2016 with a rating of 920.</p>
+<p>While it is a small sample size in terms of year, it could be said the popularity of reece’s peanut butter cups is in decline since its rating is at it’s greatest in 2015, loses the title in 2016 and wins in 2017 but with a far lower rating than it had in previous years.</p>
 </div>
 </div>
-<div id="question-8" class="section level1" number="12">
-<h1><span class="header-section-number">12</span> Question 8</h1>
-<div id="what-was-the-most-popular-candy-bar-by-this-rating-for-people-in-us-canada-uk-and-all-other-countries" class="section level2" number="12.1">
-<h2><span class="header-section-number">12.1</span> What was the most popular candy bar by this rating for people in US, Canada, UK, and all other countries?</h2>
+<div id="question-8" class="section level1" number="15">
+<h1><span class="header-section-number">15</span> Question 8</h1>
+<div id="what-was-the-most-popular-candy-bar-by-this-rating-for-people-in-us-canada-uk-and-all-other-countries" class="section level2" number="15.1">
+<h2><span class="header-section-number">15.1</span> What was the most popular candy bar by this rating for people in US, Canada, UK, and all other countries?</h2>
 <pre class="r"><code>numeric_ratings_candy_data %&gt;% 
   filter(!is.na(ratings)) %&gt;% 
   group_by(country, candy_bar) %&gt;% 
@@ -481,6 +537,9 @@ div.tocify {
 {"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["candy_bar"],"name":[2],"type":["chr"],"align":["left"]},{"label":["rating_per_country"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Canada","2":"kit_kat","3":"231"},{"1":"GB","2":"lindt_truffle","3":"30"},{"1":"GB","2":"rolos","3":"30"},{"1":"GB","2":"tolberone_something_or_other","3":"30"},{"1":"other country","2":"reese_s_peanut_butter_cups","3":"4466"},{"1":"USA","2":"reese_s_peanut_butter_cups","3":"1983"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
+<p>In Canada the most popular candy bar was the kit kat, with a rating of 231.</p>
+<p>In Great Britain it was a three way tie for the most popular candy bar, with lindt truffle, rolos and toblerone all scoring 30.</p>
+<p>In the USA the most popular was reece’s peanut butter cups, with a rating of 1983.</p>
 </div>
 </div>
 
