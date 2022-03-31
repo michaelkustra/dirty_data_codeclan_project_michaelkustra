@@ -1,5 +1,5 @@
 ---
-title: "Dirty Data Project"
+title: "Dirty Data Project - Task 4"
 output:
   html_document:
     toc: true
@@ -8,41 +8,39 @@ output:
     df_print: paged
   pdf_document: default
 ---
+# Load relevant libraries
 
 ```{r}
 library(tidyverse)
 library(here)
 ```
 
+# Read in clean data
 
+## Use read_csv using here to create relative filepath
 
-
-
-
-
-#
-#read in clean data 
 ```{r}
 clean_country_data <- read_csv(here("clean_data/clean_country_data.csv"))
 ```
 
+# Initial exploration of candy data
 
-#dimensions of clean data set
-
-## no 2
-
-### no 3
-
-# out 
+## Dimensions of data
 
 ```{r}
-
 dim(clean_country_data)
-
 ```
 
+## Check column names
+
+```{r}
+names(clean_country_data)
+```
+
+
 # Question 1
-# What is the total number of candy ratings given across the three years. (Number of candy ratings, not the number of raters. Don’t count missing values)
+
+## What is the total number of candy ratings given across the three years. (Number of candy ratings, not the number of raters. Don’t count missing values)
 
 ```{r}
 
@@ -56,7 +54,8 @@ The total number of candy ratings across the three years (excluding any NAs)
 was 607406!
 
 # Question 2
-# What was the average age of people who are going out trick or treating?
+
+## What was the average age of people who are going out trick or treating?
 
 
 ```{r}
@@ -77,7 +76,8 @@ clean_country_data %>%
 The average age for someone who went out trick or treating is 35.09 years (2dp).
 
 # Question 3
-# What was the average age of people who are not going trick or treating?
+
+## What was the average age of people who are not going trick or treating?
 
 ```{r}
 
@@ -91,7 +91,8 @@ clean_country_data %>%
 The average age for someone not going trick or treating is 39.15 years (2dp)
 
 # Question 4
-# For each of joy, despair and meh, which candy bar revived the most of these ratings?
+
+## For each of joy, despair and meh, which candy bar revived the most of these ratings?
 
 ```{r}
 
@@ -137,7 +138,8 @@ entire combined data set with 1570 ratings.
 
 
 # Question 5
-# How many people rated Starburst as despair?
+
+## How many people rated Starburst as despair?
 
 ```{r}
 
@@ -158,7 +160,7 @@ clean_country_data %>%
 
 # Question 6
 
-# For the next three questions, count despair as -1, joy as +1, and meh as 0.
+## For the next three questions, count despair as -1, joy as +1, and meh as 0.
 
 ```{r}
 
@@ -175,8 +177,9 @@ numeric_ratings_candy_data <- clean_country_data %>%
 )
 
 ```
+# Question 6
 
-# What was the most popular candy bar by this rating system for each gender in the dataset ?
+## What was the most popular candy bar by this rating system for each gender in the dataset ?
 
 ```{r}
 
@@ -189,7 +192,8 @@ numeric_ratings_candy_data %>%
 ```
 
 # Question 7
-# What was the most popular candy bar in each year?
+
+## What was the most popular candy bar in each year?
 
 ```{r}
 
@@ -202,7 +206,8 @@ numeric_ratings_candy_data %>%
 ```
 
 # Question 8
-# What was the most popular candy bar by this rating for people in US, Canada, UK, and all other countries?
+
+## What was the most popular candy bar by this rating for people in US, Canada, UK, and all other countries?
 
 ```{r}
 
