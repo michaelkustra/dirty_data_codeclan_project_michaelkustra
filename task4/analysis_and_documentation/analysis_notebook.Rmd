@@ -26,7 +26,7 @@ was often missing observations. For example; the 2017 data set was missing year,
 while the 2015 data was missing gender.
 
 The goal of this task was to clean and combine the three data sets so that they
-may be analysed to look for greater trends in the date, such as, the most
+may be analysed to look for greater trends in the data, such as, the most
 popular candy across all three years or the most popular candy per country.
 
 # Assumptions
@@ -76,7 +76,7 @@ were the same across all three years.
 Once this was complete I used `bind_rows()` to join all three years together.
 This worked best as each set have a different number of columns. 
 
-My first step with my combined data frame was the pivot it longer on all the
+My first step with my combined data frame was to pivot it longer on all the
 candy names. This long format would help my analysis between candy bars later.
 
 My last steps involved cleaning the gender and country columns. For the gender
@@ -235,15 +235,6 @@ clean_country_data %>%
 ```
 
 It appears that 1990 people across all three years rated starburst as 'despair'.
-
-```{r}
-clean_country_data %>% 
-  select(candy_bar) %>% 
-  distinct() %>% 
-  arrange(desc(candy_bar))
-```
-
-
 
 # For the next three questions, count despair as -1, joy as +1, and meh as 0.
 
