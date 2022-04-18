@@ -1,0 +1,4 @@
+"0",""
+"0","clean_country_data %>% "
+"0","  filter(going_out == ""Yes"") %>%"
+"0","  summarise(avg_age_trick_treater = mean(age, na.rm = TRUE))"

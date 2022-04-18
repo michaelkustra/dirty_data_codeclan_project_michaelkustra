@@ -1,0 +1,6 @@
+"0",""
+"0","decathlon_data_long %>% "
+"0","  select(athlete_name, event, ind_event_score, competition) %>% "
+"0","  filter(event == ""long_jump"") %>% "
+"0","  arrange(desc(ind_event_score)) %>% "
+"0","  head(1)"

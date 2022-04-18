@@ -1,0 +1,5 @@
+"0",""
+"0","decathlon_data_long %>% "
+"0","  select(competition, event, ind_event_score) %>% "
+"0","  filter(event == ""x100m"" &  competition == ""Decastar"") %>% "
+"0","  mutate(mean_100m_time = mean(ind_event_score))"

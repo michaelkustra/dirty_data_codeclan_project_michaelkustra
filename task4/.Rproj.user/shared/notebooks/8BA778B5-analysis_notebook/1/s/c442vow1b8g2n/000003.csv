@@ -1,0 +1,4 @@
+"0",""
+"0","clean_country_data %>% "
+"0","  select(ratings) %>% "
+"0","  summarise(total_num_ratings = sum(!is.na(ratings)))"

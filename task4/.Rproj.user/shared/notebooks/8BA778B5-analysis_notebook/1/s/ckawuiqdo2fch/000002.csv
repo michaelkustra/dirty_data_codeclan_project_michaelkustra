@@ -1,0 +1,19 @@
+"0","glimpse(clean_country_data)"
+"1","Rows: 990,994"
+"1",""
+"1","
+"
+"1","Columns: 7"
+"1",""
+"1","
+"
+"1","$ year      [3m[38;5;246m<dbl>[39m[23m 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015,…
+$ age       [3m[38;5;246m<dbl>[39m[23m 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 3…
+$ going_out [3m[38;5;246m<chr>[39m[23m ""No"", ""No"", ""No"", ""No"", ""No"", ""No"", ""No"", ""No"", ""No"", ""No"", ""No"", ""No"", ""No"",…
+$ gender    [3m[38;5;246m<chr>[39m[23m NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ country   [3m[38;5;246m<chr>[39m[23m ""other country"", ""other country"", ""other country"", ""other country"", ""other co…
+$ candy_bar [3m[38;5;246m<chr>[39m[23m ""butterfinger"", ""x100_grand_bar"", ""anonymous_brown_globs_that_come_in_black_a…
+$ ratings   [3m[38;5;246m<chr>[39m[23m ""JOY"", NA, ""DESPAIR"", NA, NA, NA, NA, ""DESPAIR"", ""DESPAIR"", ""DESPAIR"", NA, ""D…"
+"1",""
+"1","
+"

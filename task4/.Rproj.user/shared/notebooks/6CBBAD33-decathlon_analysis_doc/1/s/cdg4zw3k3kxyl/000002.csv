@@ -1,0 +1,14 @@
+"0","```r
+
+decathlon_data_wide <- decathlon_data_long %>%
+  pivot_wider(names_from = event, 
+              values_from = ind_event_score)
+
+decathlon_data_wide %>% 
+  group_by(athlete_name) %>%                         
+  summarise_at(vars(points),            
+               list(points_total = sum)) %>% 
+  arrange(desc(points_total)) %>% 
+  head(1)
+
+```"

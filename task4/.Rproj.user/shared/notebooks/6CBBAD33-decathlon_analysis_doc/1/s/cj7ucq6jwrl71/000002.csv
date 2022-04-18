@@ -1,0 +1,9 @@
+"0","```r
+
+decathlon_data_long %>% 
+  select(athlete_name, competition, event, ind_event_score) %>% 
+  filter(competition == \"OlympicG\" & event == \"shot_put\") %>% 
+  arrange(desc(ind_event_score)) %>% 
+  head(3)
+
+```"

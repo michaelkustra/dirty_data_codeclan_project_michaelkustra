@@ -1,0 +1,7 @@
+"0","```r
+
+decathlon_data_long %>% 
+  filter(event == \"x400m\" & ind_event_score > 50.00) %>% 
+  summarise(avg_score = mean(points))
+
+```"
