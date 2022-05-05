@@ -1,0 +1,74 @@
+Dirty Data Project Feedback : Micheal
+Task 4
+Positives
+
+Overall:
+Overall this was a fantastic project. I would say you follow our best practices to the T. Your code was well commented and it was easy to follow along. Your project was reproducible, I was able to run all your code with no issue and get the same results as you.
+Keep up this standard, and you’ll do great.
+
+Data Cleaning:
+Your cleaning was concise and thorough. You didn’t have many repetitions in your code for the most part.
+The cleaning of your country column was excellent. Nice use of regex to capture all the variations of ‘Merrika’. I also liked how you used str_c to make your vector into a regex pattern. This was probably the best approach as many of the values didn’t follow a particular pattern.
+Analysis:
+Very well-presented analysis! Great use of markdown language. It was excellent that you laid out the project brief, your assumptions, and the cleaning process you went through. Keep this up, you will be using this reporting skill a lot in the future.
+The code for each question was clean and concise, which tells us the data has been cleaned sufficiently and put into the appropriate format.
+Potential Improvements
+
+Overall:
+
+Your `.gitignore` only had
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+You saved the one we suggested in the project brief as `my.gitignore`, which hasn’t ignored anything.
+Data Cleaning:
+Although indexing is quicker and easier to write, it is also difficult for people to read and understand, plus it is sensitive to changes in the structure of the data.
+You still have some exploratory analysis in your cleaning. I would remove this as it no longer has a purpose.
+In this code, I would avoid using nested if_else functions,
+fix_age_and_cols_candy_2015 <- remove_cols_candy_2015 %>%
+  mutate(age = as.numeric(age), age = if_else(
+   age > 105, NA_real_, age
+  ),
+  age = if_else(
+   age < 5, NA_real_, age
+  ))
+Something like this would be more appropriate.
+fix_age_and_cols_candy_2015 <- remove_cols_candy_2015 %>%
+  mutate(
+   age = as.numeric(age),
+   age = if_else(
+    !between(age, 5, 105), NA_real_, age
+   )
+  )
+You have done duplicate operations on all your separate datasets in your cleaning. It’s best to wait until you have joined them, and you will only have to do it once.
+I don’t think there is Yes or No in this column
+long_combined_clean_data <- long_combined_clean_data %>%
+  mutate(ratings = case_when(
+   ratings == “Yes” ~ “JOY”,
+   ratings == “No” ~ “DESPAIR”,
+   TRUE ~ ratings
+  )
+  )
+Be careful of this operation, especially when dealing with things like gender.
+long_combined_clean_data <- long_combined_clean_data %>%
+  mutate(gender = case_when(
+   gender == “Other” ~ “gender not represented”,
+   gender == “I’d rather not say” ~ “gender not represented”,
+   TRUE ~ gender
+  )
+  )
+Remember back to the missing values lesson. There are many types of missing data. Here a few are highlighted, “I’d rather not say” the person would not like to disclose this information, “Other” the person might identify some other way, and NAs might have been missed accidentally. Because this is a free text field, I think it’s safe to assume that “Other” could mean rather not say as they could have been specific.
+
+Analysis:
+I would probably not include your initial exploration in your analysis in this case. It doesn’t really add any value.
+For Q4, you slit the solution into three separate chunks. A more concise way would be something like this.
+clean_country_data %>%
+  group_by(ratings, candy_bar) %>%
+  summarise(ratings_count = n()) %>%
+  slice_max(ratings_count)
+Here, by grouping by both candy_bar and ratings, we can summarise the count of these groups. Then we can pull the max value of each of these ratings. Similar to the solution you had in Q8.
+Formatting:
+It was a little squished together, you can use the HTML tag <br> which stands for break, this will leave some white space. You can also use ---, which will add a faint line across the page, this is good for separating sections.
+The number_sections can sometimes make things look a little cluttered. I suggest getting rid of them, especially when you have number question headers.
+You can add various options in the “{r}” of a code chunk. For instance, if you add “message=FALSE” this will prevent messages like the ones that appear when you load in libraries. This can make your report a little cleaner.
