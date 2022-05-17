@@ -23,6 +23,10 @@ The next task was done using three years of halloween candy data collected by su
 
 # Code Examples
 
+Example of case_when() to recode categorical variables to numerical rating in order to summarise numerically the highest rated candy:
+
 ![](images/case_when.png)
+
+Example of using several tidyverse verbs together to aggregate a large subset of data into one measurable metric:
 
 ![](images/summarise.png)
