@@ -39,7 +39,7 @@ The next task was done using three years of raw halloween candy data collected b
 * Change age to a numeric column and add upper & lower limits to ensure erroneous entries are discarded
 * Utilise mutate and case_when to clean ratings and gender columns so they had consistent wording
 * Compare column names and bind_rows on the 3 data sets to create 1 combined data set
-* pivot_longer our new 1 data set
+* pivot_longer() on the newly created single data set
 * Create regex patterns and use str_detect to clean country column (the trickiest part!)
 
 # Code Examples
