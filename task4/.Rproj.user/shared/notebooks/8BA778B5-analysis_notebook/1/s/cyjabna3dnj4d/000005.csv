@@ -1,1 +1,4 @@
 "0",""
+"0","clean_country_data %>% "
+"0","  filter(candy_bar == ""starburst"" & ratings == ""DESPAIR"") %>% "
+"0","  summarise(starburst_despair_ratings = n())"

@@ -1,7 +1,0 @@
-"0",""
-"0","clean_country_data %>%"
-"0","  filter(ratings == ""JOY"") %>% "
-"0","  group_by(candy_bar) %>% "
-"0","  summarise(ratings_count = n()) %>% "
-"0","  arrange(desc(ratings_count)) %>% "
-"0","  head(1)"

@@ -287,6 +287,7 @@ numeric_ratings_candy_data %>%
   slice_max(most_pop_by_year, n = 1)
 
 ```
+
 Reece's peanut butter cups was the most popular candy bar in both 2015 and 2017.
 However, the kit kat won most popular in 2016 with a rating of 920.
 
