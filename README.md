@@ -54,6 +54,10 @@ Example of case_when() to recode categorical variables to numerical rating in or
 
 ![](images/case_when.png)
 
+Example of regex pattern and str_detect to capture as many of the country entries as possible:
+
+![](images/regex.png)
+
 Example of using several tidyverse verbs together to aggregate a large subset of data into one measurable metric that will return the highest rated candy by gender:
 
 ![](images/summarise.png)
