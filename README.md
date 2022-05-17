@@ -6,7 +6,7 @@ output: html_document
 ---
 # Dirty Data Project
 
-![](images/candy.png)
+![](images/candy.jpeg)
 
 # Description
 
