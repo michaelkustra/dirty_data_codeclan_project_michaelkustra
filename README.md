@@ -5,11 +5,21 @@ date: "16/05/2022"
 output: html_document
 ---
 
-
-
 # Description
 
+The aim of this project was to take three years worth of halloween candy data and decathlong data to clean it to a _tidy_ format. Once cleaned, I was set tasks to solve using the clean data in the most efficient way possible.
+
 # Technologies Used
+
+All cleaning was done within an __R-script__ using mainly _tidyverse_ functions. Data wrangling and analysis was complete in __R-Studio__ to ensure all analysis and interpretation could be completed simultaneously.
+
+# Task 1 - Decathlon Data
+
+The first task was completed using data from two recent decathlon competitions: an Olympic competition and the World Championships.
+
+# Task 4 - Halloween Data
+
+The next task was done using three years of halloween candy data collected by survey participants while they potentially went trick-or-treating. 
 
 # Code Examples
 
