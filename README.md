@@ -1,9 +1,3 @@
----
-title: "Dirty Data Project"
-author: "MK"
-date: "16/05/2022"
-output: html_document
----
 # Dirty Data Project
 
 ![](images/candy.png)
